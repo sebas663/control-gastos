@@ -2,15 +2,19 @@ package com.control.gastos.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.control.gastos.entities.Buy;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @EnableAutoConfiguration
@@ -38,25 +42,40 @@ public class AddBuyController {
 		lstBuys.add(buy);
 	}
 	@RequestMapping("/addBuy/getAll")
-    List<Buy> getAll() {
-        return lstBuys;
+	ResponseEntity<List<Buy>> getAll() {
+        return new ResponseEntity<List<Buy>>(lstBuys, HttpStatus.OK);
     }
 	
     @RequestMapping("/addBuy/add")
-    void add(@RequestBody Buy buy) {
+    ResponseEntity<Void> add(@RequestBody Buy buy,UriComponentsBuilder ucBuilder) {
     	idCounter++;
     	buy.setId(idCounter);
     	lstBuys.add(buy);
-    	
-//        return "Hello World add !";
+    	HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/addBuy/add/{id}").buildAndExpand(buy.getId()).toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
-    @RequestMapping("/addBuy/update")
-    String update() {
-        return "Hello World! update";
+    @RequestMapping("/addBuy/update/{id}")
+    void update(@PathVariable("id") long id, @RequestBody Buy buy) {
+    	for(Buy a:lstBuys){
+    		if(a.getId().equals(id)){
+    		   a.setBuyDate(buy.getBuyDate());
+    		   a.setCompanyID(buy.getCompanyID());
+    		   a.setExternal_code(buy.getExternal_code());
+    		   a.setPrice(buy.getPrice());
+    		   a.setProductID(buy.getProductID());
+    		   a.setQuantity(buy.getQuantity());
+    		}
+    	}
     }
-    @RequestMapping("/addBuy/delete")
-    String delete() {
-        return "Hello World! delete";
+    @RequestMapping("/addBuy/delete/{id}")
+    void delete(@PathVariable("id") long id) {
+    	for (Iterator<Buy> iterator = lstBuys.iterator(); iterator.hasNext(); ) {
+    		Buy a = iterator.next();
+    	    if(a.getId().equals(id)){
+    	    	iterator.remove();
+    		}
+    	}
     }
 
     public static void main(String[] args) throws Exception {
