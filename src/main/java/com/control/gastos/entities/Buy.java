@@ -1,22 +1,21 @@
-package com.control.gastos.controller;
+package com.control.gastos.entities;
 
 import java.util.Date;
 
 public class Buy {
 	private Long id;
 	private Long companyID;
-	private String external_code;
-	private Double price;
-	private int quantity;
 	private Long productID;
-	private Double total;
+	private String external_code;
+	private int quantity;
+	private Double price;
 	private Date buyDate;
+	private Double total;
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public Buy() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * @return the id
@@ -43,6 +42,18 @@ public class Buy {
 		this.companyID = companyID;
 	}
 	/**
+	 * @return the productID
+	 */
+	public Long getProductID() {
+		return productID;
+	}
+	/**
+	 * @param productID the productID to set
+	 */
+	public void setProductID(Long productID) {
+		this.productID = productID;
+	}
+	/**
 	 * @return the external_code
 	 */
 	public String getExternal_code() {
@@ -53,18 +64,6 @@ public class Buy {
 	 */
 	public void setExternal_code(String external_code) {
 		this.external_code = external_code;
-	}
-	/**
-	 * @return the price
-	 */
-	public Double getPrice() {
-		return price;
-	}
-	/**
-	 * @param price the price to set
-	 */
-	public void setPrice(Double price) {
-		this.price = price;
 	}
 	/**
 	 * @return the quantity
@@ -79,28 +78,16 @@ public class Buy {
 		this.quantity = quantity;
 	}
 	/**
-	 * @return the productID
+	 * @return the price
 	 */
-	public Long getProductID() {
-		return productID;
+	public Double getPrice() {
+		return price;
 	}
 	/**
-	 * @param productID the productID to set
+	 * @param price the price to set
 	 */
-	public void setProductID(Long productID) {
-		this.productID = productID;
-	}
-	/**
-	 * @return the total
-	 */
-	public Double getTotal() {
-		return total;
-	}
-	/**
-	 * @param total the total to set
-	 */
-	public void setTotal(Double total) {
-		this.total = total;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 	/**
 	 * @return the buyDate
@@ -114,4 +101,17 @@ public class Buy {
 	public void setBuyDate(Date buyDate) {
 		this.buyDate = buyDate;
 	}
+	/**
+	 * @return the total
+	 */
+	public Double getTotal() {
+		return total;
+	}
+	/**
+	 * @param total the total to set
+	 */
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+	
 }
