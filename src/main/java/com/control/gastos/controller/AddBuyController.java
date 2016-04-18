@@ -45,6 +45,9 @@ public class AddBuyController {
 	}
 	@RequestMapping("/addBuy/getAll")
 	ResponseEntity<List<Buy>> getAll() {
+		if(lstBuys.isEmpty()){
+            return new ResponseEntity<List<Buy>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
         return new ResponseEntity<List<Buy>>(lstBuys, HttpStatus.OK);
     }
 	
@@ -53,12 +56,18 @@ public class AddBuyController {
     	idCounter++;
     	buy.setId(idCounter);
     	lstBuys.add(buy);
+//    	if (userService.isUserExist(user)) {
+//            System.out.println("A User with name " + user.getUsername() + " already exist");
+//            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+//        }
+//        userService.saveUser(user);
+        
     	HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/addBuy/add/{id}").buildAndExpand(buy.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
     @RequestMapping("/addBuy/update/{id}")
-    void update(@PathVariable("id") long id, @RequestBody Buy buy) {
+    ResponseEntity<Buy> update(@PathVariable("id") long id, @RequestBody Buy buy) {
     	for(Buy a:lstBuys){
     		if(a.getId().equals(id)){
     		   a.setBuyDate(buy.getBuyDate());
@@ -69,16 +78,37 @@ public class AddBuyController {
     		   a.setQuantity(buy.getQuantity());
     		}
     	}
+    	  
+//        User currentUser = userService.findById(id);
+//        if (currentUser==null) {
+//            System.out.println("User with id " + id + " not found");
+//            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+//        }
+//        currentUser.setUsername(user.getUsername());
+//        currentUser.setAddress(user.getAddress());
+//        currentUser.setEmail(user.getEmail());
+//        userService.updateUser(currentUser);
+        return new ResponseEntity<Buy>(buy, HttpStatus.OK);
     }
-    @RequestMapping("/addBuy/delete/{id}")
-    void delete(@PathVariable("id") long id) {
-    	for (Iterator<Buy> iterator = lstBuys.iterator(); iterator.hasNext(); ) {
-    		Buy a = iterator.next();
-    	    if(a.getId().equals(id)){
-    	    	iterator.remove();
-    		}
-    	}
-    }
+
+	@RequestMapping("/addBuy/delete/{id}")
+	ResponseEntity<Buy> delete(@PathVariable("id") long id) {
+		for (Iterator<Buy> iterator = lstBuys.iterator(); iterator.hasNext();) {
+			Buy a = iterator.next();
+			if (a.getId().equals(id)) {
+				iterator.remove();
+			}
+		}
+		// Buy buy = userService.findById(id);
+		// if (buy == null) {
+		// System.out.println("Unable to delete. User with id " + id + " not
+		// found");
+		// return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		// }
+
+		// userService.deleteUserById(id);
+		return new ResponseEntity<Buy>(HttpStatus.NO_CONTENT);
+	}
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(AddBuyController.class, args);
