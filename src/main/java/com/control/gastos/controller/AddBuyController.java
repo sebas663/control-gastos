@@ -55,6 +55,7 @@ public class AddBuyController {
     ResponseEntity<Void> add(@RequestBody Buy buy,UriComponentsBuilder ucBuilder) {
     	idCounter++;
     	buy.setId(idCounter);
+    	buy.setTotal(buy.getPrice() * buy.getQuantity());
     	lstBuys.add(buy);
 //    	if (userService.isUserExist(user)) {
 //            System.out.println("A User with name " + user.getUsername() + " already exist");
@@ -76,6 +77,7 @@ public class AddBuyController {
     		   a.setPrice(buy.getPrice());
     		   a.setProductID(buy.getProductID());
     		   a.setQuantity(buy.getQuantity());
+    		   a.setTotal(buy.getPrice() * buy.getQuantity());
     		}
     	}
     	  

@@ -18,7 +18,7 @@ public class ControlGastosApplication {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/addBuy/**")
+                registry.addMapping("/**")
                 .allowedOrigins("http://localhost:63342")
     			.allowedMethods("GET","POST","PUT", "DELETE")
 //    			.allowedHeaders("header1", "header2", "header3")
