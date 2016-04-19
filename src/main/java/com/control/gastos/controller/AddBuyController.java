@@ -25,7 +25,7 @@ public class AddBuyController {
 	 * 
 	 */
 	private List<Buy> lstBuys;
-	private Long idCounter = 0L;
+	private Long idCounter = 1L;
     /**
 	 * 
 	 */
@@ -33,12 +33,12 @@ public class AddBuyController {
 		super();
 		lstBuys = new ArrayList<Buy>();
 		Buy buy = new Buy();
-		buy.setId(0L);
-		buy.setCompanyID(0L);
+		buy.setId(1L);
+		buy.setCompanyID(1L);
 		buy.setExternal_code("code");
 		buy.setPrice(10D);
 		buy.setQuantity(2);
-		buy.setProductID(0L);
+		buy.setProductID(2L);
 		buy.setTotal(20D);
 		buy.setBuyDate(new Date());
 		lstBuys.add(buy);
