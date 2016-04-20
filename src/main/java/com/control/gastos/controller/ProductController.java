@@ -24,7 +24,7 @@ public class ProductController {
 	 * 
 	 */
 	private List<Product> lstProducts;
-	private Long idCounter = 0L;
+	private Long idCounter = 5L;
     /**
 	 * 
 	 */
@@ -41,7 +41,7 @@ public class ProductController {
     }
 	
     @RequestMapping("/product/create")
-    ResponseEntity<Void> create(@RequestBody Product product,UriComponentsBuilder ucBuilder) {
+    ResponseEntity<List<Product>> create(@RequestBody Product product,UriComponentsBuilder ucBuilder) {
     	idCounter++;
     	product.setId(idCounter);
     	lstProducts.add(product);
@@ -53,7 +53,7 @@ public class ProductController {
         
     	HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/product/add/{id}").buildAndExpand(product.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<List<Product>>(lstProducts,headers, HttpStatus.CREATED);
     }
     @RequestMapping("/product/update/{id}")
     ResponseEntity<Product> update(@PathVariable("id") long id, @RequestBody Product product) {
