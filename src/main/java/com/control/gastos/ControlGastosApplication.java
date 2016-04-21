@@ -21,8 +21,8 @@ public class ControlGastosApplication {
                 registry.addMapping("/**")
                 .allowedOrigins("http://localhost:63342")
     			.allowedMethods("GET","POST","PUT", "DELETE")
-//    			.allowedHeaders("header1", "header2", "header3")
-//    			.exposedHeaders("header1", "header2")
+    			.allowedHeaders("Content-Type")
+    			.exposedHeaders("Content-Type")
     			.allowCredentials(false).maxAge(3600);;
             }
         };
