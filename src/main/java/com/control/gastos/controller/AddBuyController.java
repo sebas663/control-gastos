@@ -111,6 +111,19 @@ public class AddBuyController {
 		// userService.deleteUserById(id);
 		return new ResponseEntity<Buy>(HttpStatus.NO_CONTENT);
 	}
+	 @RequestMapping("/addBuy/save")
+	    ResponseEntity<Void> save(@RequestBody List<Buy> buys,UriComponentsBuilder ucBuilder) {
+		    lstBuys.clear();
+//	    	if (userService.isUserExist(user)) {
+//	            System.out.println("A User with name " + user.getUsername() + " already exist");
+//	            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+//	        }
+//	        userService.saveUser(user);
+	        
+//	    	HttpHeaders headers = new HttpHeaders();
+//	        headers.setLocation(ucBuilder.path("/addBuy/add/{id}").buildAndExpand(buy.getId()).toUri());
+	        return new ResponseEntity<Void>(HttpStatus.OK);
+	    }
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(AddBuyController.class, args);
