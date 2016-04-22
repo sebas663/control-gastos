@@ -112,8 +112,8 @@ public class AddBuyController {
 		return new ResponseEntity<Buy>(HttpStatus.NO_CONTENT);
 	}
 	 @RequestMapping("/addBuy/save")
-	    ResponseEntity<Void> save(@RequestBody RequestWrapper requestWrapper,UriComponentsBuilder ucBuilder) {
-		    List<Buy> buys = requestWrapper.getBuys();
+	    ResponseEntity<Void> save(@RequestBody List<Buy> lst,UriComponentsBuilder ucBuilder) {
+		   // List<Buy> buys = requestWrapper.getBuys();
 		    lstBuys.clear();
 //	    	if (userService.isUserExist(user)) {
 //	            System.out.println("A User with name " + user.getUsername() + " already exist");
