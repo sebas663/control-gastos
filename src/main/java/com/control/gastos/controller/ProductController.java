@@ -32,7 +32,7 @@ public class ProductController {
 		super();
 		lstProducts = getAllDummie();
 	}
-	@RequestMapping("/product/getAll")
+	@RequestMapping("/Product/getAll")
 	ResponseEntity<List<Product>> getAll() {
 		if(lstProducts.isEmpty()){
             return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
@@ -40,11 +40,11 @@ public class ProductController {
         return new ResponseEntity<List<Product>>(lstProducts, HttpStatus.OK);
     }
 	
-    @RequestMapping("/product/create")
-    ResponseEntity<Void> create(@RequestBody Product product,UriComponentsBuilder ucBuilder) {
+    @RequestMapping("/Product/create")
+    ResponseEntity<Void> create(@RequestBody Product Product,UriComponentsBuilder ucBuilder) {
     	idCounter++;
-    	product.setId(idCounter);
-    	lstProducts.add(product);
+    	Product.setId(idCounter);
+    	lstProducts.add(Product);
 //    	if (userService.isUserExist(user)) {
 //            System.out.println("A User with name " + user.getUsername() + " already exist");
 //            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
@@ -52,14 +52,14 @@ public class ProductController {
 //        userService.saveUser(user);
         
     	HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/product/add/{id}").buildAndExpand(product.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/Product/add/{id}").buildAndExpand(Product.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
-    @RequestMapping("/product/update/{id}")
-    ResponseEntity<Product> update(@PathVariable("id") long id, @RequestBody Product product) {
+    @RequestMapping("/Product/update/{id}")
+    ResponseEntity<Product> update(@PathVariable("id") long id, @RequestBody Product Product) {
     	for(Product a:lstProducts){
     		if(a.getId().equals(id)){
-    		a.setDescription(product.getDescription());
+    		a.setDescription(Product.getDescription());
     		}
     	}
     	  
@@ -72,10 +72,10 @@ public class ProductController {
 //        currentUser.setAddress(user.getAddress());
 //        currentUser.setEmail(user.getEmail());
 //        userService.updateUser(currentUser);
-        return new ResponseEntity<Product>(product, HttpStatus.OK);
+        return new ResponseEntity<Product>(Product, HttpStatus.OK);
     }
 
-	@RequestMapping("/product/delete/{id}")
+	@RequestMapping("/Product/delete/{id}")
 	ResponseEntity<Product> delete(@PathVariable("id") long id) {
 		for (Iterator<Product> iterator = lstProducts.iterator(); iterator.hasNext();) {
 			Product a = iterator.next();

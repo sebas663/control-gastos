@@ -33,7 +33,7 @@ public class CompanyController {
 		super();
 		lstCompanys = getAllDummie();
 	}
-	@RequestMapping("/company/getAll")
+	@RequestMapping("/Company/getAll")
 	ResponseEntity<List<Company>> getAll() {
 		if(lstCompanys.isEmpty()){
             return new ResponseEntity<List<Company>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
@@ -41,11 +41,11 @@ public class CompanyController {
         return new ResponseEntity<List<Company>>(lstCompanys, HttpStatus.OK);
     }
 	
-    @RequestMapping("/company/create")
-    ResponseEntity<Void> create(@RequestBody Company company,UriComponentsBuilder ucBuilder) {
+    @RequestMapping("/Company/create")
+    ResponseEntity<Void> create(@RequestBody Company Company,UriComponentsBuilder ucBuilder) {
     	idCounter++;
-    	company.setId(idCounter);
-    	lstCompanys.add(company);
+    	Company.setId(idCounter);
+    	lstCompanys.add(Company);
 //    	if (userService.isUserExist(user)) {
 //            System.out.println("A User with name " + user.getUsername() + " already exist");
 //            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
@@ -53,14 +53,14 @@ public class CompanyController {
 //        userService.saveUser(user);
         
     	HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/company/add/{id}").buildAndExpand(company.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/Company/add/{id}").buildAndExpand(Company.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
-    @RequestMapping("/company/update/{id}")
-    ResponseEntity<Company> update(@PathVariable("id") long id, @RequestBody Company company) {
+    @RequestMapping("/Company/update/{id}")
+    ResponseEntity<Company> update(@PathVariable("id") long id, @RequestBody Company Company) {
     	for(Company a:lstCompanys){
     		if(a.getId().equals(id)){
-    		a.setDescription(company.getDescription());
+    		a.setDescription(Company.getDescription());
     		}
     	}
     	  
@@ -73,10 +73,10 @@ public class CompanyController {
 //        currentUser.setAddress(user.getAddress());
 //        currentUser.setEmail(user.getEmail());
 //        userService.updateUser(currentUser);
-        return new ResponseEntity<Company>(company, HttpStatus.OK);
+        return new ResponseEntity<Company>(Company, HttpStatus.OK);
     }
 
-	@RequestMapping("/company/delete/{id}")
+	@RequestMapping("/Company/delete/{id}")
 	ResponseEntity<Company> delete(@PathVariable("id") long id) {
 		for (Iterator<Company> iterator = lstCompanys.iterator(); iterator.hasNext();) {
 			Company a = iterator.next();
@@ -100,30 +100,30 @@ public class CompanyController {
     }
     private List<Company> getAllDummie(){
     	List<Company> lstCompanys = new ArrayList<Company>();
-		Company company = new Company();
-		company.setId(1L);
-		company.setDescription("PRIMER EMPRESA 1");
-		lstCompanys.add(company);
+		Company Company = new Company();
+		Company.setId(1L);
+		Company.setDescription("PRIMER EMPRESA 1");
+		lstCompanys.add(Company);
 		
-		Company company2 = new Company();
-		company2.setId(2L);
-		company2.setDescription("PRIMER EMPRESA 2");
-		lstCompanys.add(company2);
+		Company Company2 = new Company();
+		Company2.setId(2L);
+		Company2.setDescription("PRIMER EMPRESA 2");
+		lstCompanys.add(Company2);
 		
-		Company company3 = new Company();
-		company3.setId(3L);
-		company3.setDescription("PRIMER EMPRESA 3");
-		lstCompanys.add(company3);
+		Company Company3 = new Company();
+		Company3.setId(3L);
+		Company3.setDescription("PRIMER EMPRESA 3");
+		lstCompanys.add(Company3);
 		
-		Company company4 = new Company();
-		company4.setId(4L);
-		company4.setDescription("PRIMER EMPRESA 4");
-		lstCompanys.add(company4);
+		Company Company4 = new Company();
+		Company4.setId(4L);
+		Company4.setDescription("PRIMER EMPRESA 4");
+		lstCompanys.add(Company4);
 		
-		Company company5 = new Company();
-		company5.setId(5L);
-		company5.setDescription("PRIMER EMPRESA 5");
-		lstCompanys.add(company5);
+		Company Company5 = new Company();
+		Company5.setId(5L);
+		Company5.setDescription("PRIMER EMPRESA 5");
+		lstCompanys.add(Company5);
 		return lstCompanys;
 	}
 }

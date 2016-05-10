@@ -43,7 +43,7 @@ public class AddBuyController {
 		buy.setBuyDate(new Date());
 		lstBuys.add(buy);
 	}
-	@RequestMapping("/addBuy/getAll")
+	@RequestMapping("/Buy/getAll")
 	ResponseEntity<List<Buy>> getAll() {
 		if(lstBuys.isEmpty()){
             return new ResponseEntity<List<Buy>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
@@ -51,7 +51,7 @@ public class AddBuyController {
         return new ResponseEntity<List<Buy>>(lstBuys, HttpStatus.OK);
     }
 	
-    @RequestMapping("/addBuy/add")
+    @RequestMapping("/Buy/add")
     ResponseEntity<Void> add(@RequestBody Buy buy,UriComponentsBuilder ucBuilder) {
     	idCounter++;
     	buy.setId(idCounter);
@@ -64,10 +64,10 @@ public class AddBuyController {
 //        userService.saveUser(user);
         
     	HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/addBuy/add/{id}").buildAndExpand(buy.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/Buy/add/{id}").buildAndExpand(buy.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
-    @RequestMapping("/addBuy/update/{id}")
+    @RequestMapping("/Buy/update/{id}")
     ResponseEntity<Buy> update(@PathVariable("id") long id, @RequestBody Buy buy) {
     	for(Buy a:lstBuys){
     		if(a.getId().equals(id)){
@@ -93,7 +93,7 @@ public class AddBuyController {
         return new ResponseEntity<Buy>(buy, HttpStatus.OK);
     }
 
-	@RequestMapping("/addBuy/delete/{id}")
+	@RequestMapping("/Buy/delete/{id}")
 	ResponseEntity<Buy> delete(@PathVariable("id") long id) {
 		for (Iterator<Buy> iterator = lstBuys.iterator(); iterator.hasNext();) {
 			Buy a = iterator.next();
@@ -111,7 +111,7 @@ public class AddBuyController {
 		// userService.deleteUserById(id);
 		return new ResponseEntity<Buy>(HttpStatus.NO_CONTENT);
 	}
-	 @RequestMapping("/addBuy/save")
+	 @RequestMapping("/Buy/save")
 	    ResponseEntity<Void> save(@RequestBody List<Buy> lst,UriComponentsBuilder ucBuilder) {
 		   // List<Buy> buys = requestWrapper.getBuys();
 		    lstBuys.clear();
@@ -122,7 +122,7 @@ public class AddBuyController {
 //	        userService.saveUser(user);
 	        
 //	    	HttpHeaders headers = new HttpHeaders();
-//	        headers.setLocation(ucBuilder.path("/addBuy/add/{id}").buildAndExpand(buy.getId()).toUri());
+//	        headers.setLocation(ucBuilder.path("/Buy/add/{id}").buildAndExpand(buy.getId()).toUri());
 	        return new ResponseEntity<Void>(HttpStatus.OK);
 	    }
 
