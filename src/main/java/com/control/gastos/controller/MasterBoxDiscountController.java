@@ -16,33 +16,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.control.gastos.entities.BoxDiscount;
+import com.control.gastos.entities.MasterBoxDiscount;
 
 @RestController
 @EnableAutoConfiguration
-public class BoxDiscountController {
+public class MasterBoxDiscountController {
 	/**
 	 * 
 	 */
-	private List<BoxDiscount> lstBoxDiscounts;
+	private List<MasterBoxDiscount> lstBoxDiscounts;
 	private Long idCounter = 0L;
     /**
 	 * 
 	 */
-	public BoxDiscountController() {
+	public MasterBoxDiscountController() {
 		super();
 		lstBoxDiscounts = getAllDummie();
 	}
 	@RequestMapping("/BoxDiscount/getAll")
-	ResponseEntity<List<BoxDiscount>> getAll() {
+	ResponseEntity<List<MasterBoxDiscount>> getAll() {
 		if(lstBoxDiscounts.isEmpty()){
-            return new ResponseEntity<List<BoxDiscount>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+            return new ResponseEntity<List<MasterBoxDiscount>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
-        return new ResponseEntity<List<BoxDiscount>>(lstBoxDiscounts, HttpStatus.OK);
+        return new ResponseEntity<List<MasterBoxDiscount>>(lstBoxDiscounts, HttpStatus.OK);
     }
 	
     @RequestMapping("/BoxDiscount/create")
-    ResponseEntity<Void> create(@RequestBody BoxDiscount BoxDiscount,UriComponentsBuilder ucBuilder) {
+    ResponseEntity<Void> create(@RequestBody MasterBoxDiscount BoxDiscount,UriComponentsBuilder ucBuilder) {
     	idCounter++;
     	BoxDiscount.setId(idCounter);
     	lstBoxDiscounts.add(BoxDiscount);
@@ -57,8 +57,8 @@ public class BoxDiscountController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
     @RequestMapping("/BoxDiscount/update/{id}")
-    ResponseEntity<BoxDiscount> update(@PathVariable("id") long id, @RequestBody BoxDiscount BoxDiscount) {
-    	for(BoxDiscount a:lstBoxDiscounts){
+    ResponseEntity<MasterBoxDiscount> update(@PathVariable("id") long id, @RequestBody MasterBoxDiscount BoxDiscount) {
+    	for(MasterBoxDiscount a:lstBoxDiscounts){
     		if(a.getId().equals(id)){
     		a.setDescription(BoxDiscount.getDescription());
     		}
@@ -73,13 +73,13 @@ public class BoxDiscountController {
 //        currentUser.setAddress(user.getAddress());
 //        currentUser.setEmail(user.getEmail());
 //        userService.updateUser(currentUser);
-        return new ResponseEntity<BoxDiscount>(BoxDiscount, HttpStatus.OK);
+        return new ResponseEntity<MasterBoxDiscount>(BoxDiscount, HttpStatus.OK);
     }
 
 	@RequestMapping("/BoxDiscount/delete/{id}")
-	ResponseEntity<BoxDiscount> delete(@PathVariable("id") long id) {
-		for (Iterator<BoxDiscount> iterator = lstBoxDiscounts.iterator(); iterator.hasNext();) {
-			BoxDiscount a = iterator.next();
+	ResponseEntity<MasterBoxDiscount> delete(@PathVariable("id") long id) {
+		for (Iterator<MasterBoxDiscount> iterator = lstBoxDiscounts.iterator(); iterator.hasNext();) {
+			MasterBoxDiscount a = iterator.next();
 			if (a.getId().equals(id)) {
 				iterator.remove();
 			}
@@ -92,35 +92,35 @@ public class BoxDiscountController {
 		// }
 
 		// userService.deleteUserById(id);
-		return new ResponseEntity<BoxDiscount>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<MasterBoxDiscount>(HttpStatus.NO_CONTENT);
 	}
 	
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(BoxDiscountController.class, args);
+        SpringApplication.run(MasterBoxDiscountController.class, args);
     }
-    private List<BoxDiscount> getAllDummie(){
-    	List<BoxDiscount> lstBoxDiscounts = new ArrayList<BoxDiscount>();
-		BoxDiscount BoxDiscount = new BoxDiscount();
+    private List<MasterBoxDiscount> getAllDummie(){
+    	List<MasterBoxDiscount> lstBoxDiscounts = new ArrayList<MasterBoxDiscount>();
+		MasterBoxDiscount BoxDiscount = new MasterBoxDiscount();
 		BoxDiscount.setId(1L);
 		BoxDiscount.setDescription("PRIMER BOX DISCOUNT 1");
 		lstBoxDiscounts.add(BoxDiscount);
 		
-		BoxDiscount BoxDiscount2 = new BoxDiscount();
+		MasterBoxDiscount BoxDiscount2 = new MasterBoxDiscount();
 		BoxDiscount2.setId(2L);
 		BoxDiscount2.setDescription("PRIMER BOX DISCOUNT 2");
 		lstBoxDiscounts.add(BoxDiscount2);
 		
-		BoxDiscount BoxDiscount3 = new BoxDiscount();
+		MasterBoxDiscount BoxDiscount3 = new MasterBoxDiscount();
 		BoxDiscount3.setId(3L);
 		BoxDiscount3.setDescription("PRIMER BOX DISCOUNT 3");
 		lstBoxDiscounts.add(BoxDiscount3);
 		
-		BoxDiscount BoxDiscount4 = new BoxDiscount();
+		MasterBoxDiscount BoxDiscount4 = new MasterBoxDiscount();
 		BoxDiscount4.setId(4L);
 		BoxDiscount4.setDescription("PRIMER BOX DISCOUNT 4");
 		lstBoxDiscounts.add(BoxDiscount4);
 		
-		BoxDiscount BoxDiscount5 = new BoxDiscount();
+		MasterBoxDiscount BoxDiscount5 = new MasterBoxDiscount();
 		BoxDiscount5.setId(5L);
 		BoxDiscount5.setDescription("PRIMER BOX DISCOUNT 5");
 		lstBoxDiscounts.add(BoxDiscount5);

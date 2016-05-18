@@ -1,6 +1,6 @@
 package com.control.gastos.entities;
 
-public class Company {
+public class MasterCompany {
 	private Long id;
 	private String description;
 	private String entry;
@@ -11,7 +11,7 @@ public class Company {
 	/**
 	 * Constructor.
 	 */
-	public Company() {
+	public MasterCompany() {
 		super();
 	}
 

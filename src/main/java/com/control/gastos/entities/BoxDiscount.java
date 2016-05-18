@@ -2,8 +2,16 @@ package com.control.gastos.entities;
 
 public class BoxDiscount {
 	private Long id;
-	private String description;
-	private String code;
+	private Long index;
+	private Long boxDiscountID;
+	private Double amount;
+	private Double percent;
+	/**
+	 * 
+	 */
+	public BoxDiscount() {
+		super();
+	}
 	/**
 	 * @return the id
 	 */
@@ -17,28 +25,52 @@ public class BoxDiscount {
 		this.id = id;
 	}
 	/**
-	 * @return the description
+	 * @return the index
 	 */
-	public String getDescription() {
-		return description;
+	public Long getIndex() {
+		return index;
 	}
 	/**
-	 * @param description the description to set
+	 * @param index the index to set
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public void setIndex(Long index) {
+		this.index = index;
 	}
 	/**
-	 * @return the code
+	 * @return the boxDiscountID
 	 */
-	public String getCode() {
-		return code;
+	public Long getBoxDiscountID() {
+		return boxDiscountID;
 	}
 	/**
-	 * @param code the code to set
+	 * @param boxDiscountID the boxDiscountID to set
 	 */
-	public void setCode(String code) {
-		this.code = code;
+	public void setBoxDiscountID(Long boxDiscountID) {
+		this.boxDiscountID = boxDiscountID;
+	}
+	/**
+	 * @return the amount
+	 */
+	public Double getAmount() {
+		return amount;
+	}
+	/**
+	 * @param amount the amount to set
+	 */
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+	/**
+	 * @return the percent
+	 */
+	public Double getPercent() {
+		return percent;
+	}
+	/**
+	 * @param percent the percent to set
+	 */
+	public void setPercent(Double percent) {
+		this.percent = percent;
 	}
 	
 }

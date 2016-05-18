@@ -1,18 +1,16 @@
 package com.control.gastos.entities;
 
-import java.util.Date;
 
 public class Buy {
 	private Long id;
-	private Long companyID;
+	private Long index;
 	private Long productID;
 	private String external_code;
-	private int quantity;
+	private Double quantity;
 	private Double price;
-	private Date buyDate;
-	private Double total;
+	private Double amount;
 	/**
-	 * Constructor.
+	 * 
 	 */
 	public Buy() {
 		super();
@@ -30,16 +28,16 @@ public class Buy {
 		this.id = id;
 	}
 	/**
-	 * @return the companyID
+	 * @return the index
 	 */
-	public Long getCompanyID() {
-		return companyID;
+	public Long getIndex() {
+		return index;
 	}
 	/**
-	 * @param companyID the companyID to set
+	 * @param index the index to set
 	 */
-	public void setCompanyID(Long companyID) {
-		this.companyID = companyID;
+	public void setIndex(Long index) {
+		this.index = index;
 	}
 	/**
 	 * @return the productID
@@ -68,13 +66,13 @@ public class Buy {
 	/**
 	 * @return the quantity
 	 */
-	public int getQuantity() {
+	public Double getQuantity() {
 		return quantity;
 	}
 	/**
 	 * @param quantity the quantity to set
 	 */
-	public void setQuantity(int quantity) {
+	public void setQuantity(Double quantity) {
 		this.quantity = quantity;
 	}
 	/**
@@ -90,28 +88,15 @@ public class Buy {
 		this.price = price;
 	}
 	/**
-	 * @return the buyDate
+	 * @return the amount
 	 */
-	public Date getBuyDate() {
-		return buyDate;
+	public Double getAmount() {
+		return amount;
 	}
 	/**
-	 * @param buyDate the buyDate to set
+	 * @param amount the amount to set
 	 */
-	public void setBuyDate(Date buyDate) {
-		this.buyDate = buyDate;
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
-	/**
-	 * @return the total
-	 */
-	public Double getTotal() {
-		return total;
-	}
-	/**
-	 * @param total the total to set
-	 */
-	public void setTotal(Double total) {
-		this.total = total;
-	}
-	
 }

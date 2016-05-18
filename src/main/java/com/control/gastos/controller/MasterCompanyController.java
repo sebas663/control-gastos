@@ -16,33 +16,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.control.gastos.entities.Company;
+import com.control.gastos.entities.MasterCompany;
 
 @RestController
 @EnableAutoConfiguration
-public class CompanyController {
+public class MasterCompanyController {
 	/**
 	 * 
 	 */
-	private List<Company> lstCompanys;
+	private List<MasterCompany> lstCompanys;
 	private Long idCounter = 0L;
     /**
 	 * 
 	 */
-	public CompanyController() {
+	public MasterCompanyController() {
 		super();
 		lstCompanys = getAllDummie();
 	}
 	@RequestMapping("/Company/getAll")
-	ResponseEntity<List<Company>> getAll() {
+	ResponseEntity<List<MasterCompany>> getAll() {
 		if(lstCompanys.isEmpty()){
-            return new ResponseEntity<List<Company>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+            return new ResponseEntity<List<MasterCompany>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
-        return new ResponseEntity<List<Company>>(lstCompanys, HttpStatus.OK);
+        return new ResponseEntity<List<MasterCompany>>(lstCompanys, HttpStatus.OK);
     }
 	
     @RequestMapping("/Company/create")
-    ResponseEntity<Void> create(@RequestBody Company Company,UriComponentsBuilder ucBuilder) {
+    ResponseEntity<Void> create(@RequestBody MasterCompany Company,UriComponentsBuilder ucBuilder) {
     	idCounter++;
     	Company.setId(idCounter);
     	lstCompanys.add(Company);
@@ -57,8 +57,8 @@ public class CompanyController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
     @RequestMapping("/Company/update/{id}")
-    ResponseEntity<Company> update(@PathVariable("id") long id, @RequestBody Company Company) {
-    	for(Company a:lstCompanys){
+    ResponseEntity<MasterCompany> update(@PathVariable("id") long id, @RequestBody MasterCompany Company) {
+    	for(MasterCompany a:lstCompanys){
     		if(a.getId().equals(id)){
     		a.setDescription(Company.getDescription());
     		}
@@ -73,13 +73,13 @@ public class CompanyController {
 //        currentUser.setAddress(user.getAddress());
 //        currentUser.setEmail(user.getEmail());
 //        userService.updateUser(currentUser);
-        return new ResponseEntity<Company>(Company, HttpStatus.OK);
+        return new ResponseEntity<MasterCompany>(Company, HttpStatus.OK);
     }
 
 	@RequestMapping("/Company/delete/{id}")
-	ResponseEntity<Company> delete(@PathVariable("id") long id) {
-		for (Iterator<Company> iterator = lstCompanys.iterator(); iterator.hasNext();) {
-			Company a = iterator.next();
+	ResponseEntity<MasterCompany> delete(@PathVariable("id") long id) {
+		for (Iterator<MasterCompany> iterator = lstCompanys.iterator(); iterator.hasNext();) {
+			MasterCompany a = iterator.next();
 			if (a.getId().equals(id)) {
 				iterator.remove();
 			}
@@ -92,35 +92,35 @@ public class CompanyController {
 		// }
 
 		// userService.deleteUserById(id);
-		return new ResponseEntity<Company>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<MasterCompany>(HttpStatus.NO_CONTENT);
 	}
 	
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(CompanyController.class, args);
+        SpringApplication.run(MasterCompanyController.class, args);
     }
-    private List<Company> getAllDummie(){
-    	List<Company> lstCompanys = new ArrayList<Company>();
-		Company Company = new Company();
+    private List<MasterCompany> getAllDummie(){
+    	List<MasterCompany> lstCompanys = new ArrayList<MasterCompany>();
+		MasterCompany Company = new MasterCompany();
 		Company.setId(1L);
 		Company.setDescription("PRIMER EMPRESA 1");
 		lstCompanys.add(Company);
 		
-		Company Company2 = new Company();
+		MasterCompany Company2 = new MasterCompany();
 		Company2.setId(2L);
 		Company2.setDescription("PRIMER EMPRESA 2");
 		lstCompanys.add(Company2);
 		
-		Company Company3 = new Company();
+		MasterCompany Company3 = new MasterCompany();
 		Company3.setId(3L);
 		Company3.setDescription("PRIMER EMPRESA 3");
 		lstCompanys.add(Company3);
 		
-		Company Company4 = new Company();
+		MasterCompany Company4 = new MasterCompany();
 		Company4.setId(4L);
 		Company4.setDescription("PRIMER EMPRESA 4");
 		lstCompanys.add(Company4);
 		
-		Company Company5 = new Company();
+		MasterCompany Company5 = new MasterCompany();
 		Company5.setId(5L);
 		Company5.setDescription("PRIMER EMPRESA 5");
 		lstCompanys.add(Company5);

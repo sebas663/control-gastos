@@ -16,33 +16,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.control.gastos.entities.CreditCardDiscount;
+import com.control.gastos.entities.MasterCreditCardDiscount;
 
 @RestController
 @EnableAutoConfiguration
-public class CreditCardDiscountController {
+public class MasterCreditCardDiscountController {
 	/**
 	 * 
 	 */
-	private List<CreditCardDiscount> lstCreditCardDiscounts;
+	private List<MasterCreditCardDiscount> lstCreditCardDiscounts;
 	private Long idCounter = 0L;
     /**
 	 * 
 	 */
-	public CreditCardDiscountController() {
+	public MasterCreditCardDiscountController() {
 		super();
 		lstCreditCardDiscounts = getAllDummie();
 	}
 	@RequestMapping("/CreditCardDiscount/getAll")
-	ResponseEntity<List<CreditCardDiscount>> getAll() {
+	ResponseEntity<List<MasterCreditCardDiscount>> getAll() {
 		if(lstCreditCardDiscounts.isEmpty()){
-            return new ResponseEntity<List<CreditCardDiscount>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+            return new ResponseEntity<List<MasterCreditCardDiscount>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
-        return new ResponseEntity<List<CreditCardDiscount>>(lstCreditCardDiscounts, HttpStatus.OK);
+        return new ResponseEntity<List<MasterCreditCardDiscount>>(lstCreditCardDiscounts, HttpStatus.OK);
     }
 	
     @RequestMapping("/CreditCardDiscount/create")
-    ResponseEntity<Void> create(@RequestBody CreditCardDiscount CreditCardDiscount,UriComponentsBuilder ucBuilder) {
+    ResponseEntity<Void> create(@RequestBody MasterCreditCardDiscount CreditCardDiscount,UriComponentsBuilder ucBuilder) {
     	idCounter++;
     	CreditCardDiscount.setId(idCounter);
     	lstCreditCardDiscounts.add(CreditCardDiscount);
@@ -57,8 +57,8 @@ public class CreditCardDiscountController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
     @RequestMapping("/CreditCardDiscount/update/{id}")
-    ResponseEntity<CreditCardDiscount> update(@PathVariable("id") long id, @RequestBody CreditCardDiscount CreditCardDiscount) {
-    	for(CreditCardDiscount a:lstCreditCardDiscounts){
+    ResponseEntity<MasterCreditCardDiscount> update(@PathVariable("id") long id, @RequestBody MasterCreditCardDiscount CreditCardDiscount) {
+    	for(MasterCreditCardDiscount a:lstCreditCardDiscounts){
     		if(a.getId().equals(id)){
     		a.setDescription(CreditCardDiscount.getDescription());
     		}
@@ -73,13 +73,13 @@ public class CreditCardDiscountController {
 //        currentUser.setAddress(user.getAddress());
 //        currentUser.setEmail(user.getEmail());
 //        userService.updateUser(currentUser);
-        return new ResponseEntity<CreditCardDiscount>(CreditCardDiscount, HttpStatus.OK);
+        return new ResponseEntity<MasterCreditCardDiscount>(CreditCardDiscount, HttpStatus.OK);
     }
 
 	@RequestMapping("/CreditCardDiscount/delete/{id}")
-	ResponseEntity<CreditCardDiscount> delete(@PathVariable("id") long id) {
-		for (Iterator<CreditCardDiscount> iterator = lstCreditCardDiscounts.iterator(); iterator.hasNext();) {
-			CreditCardDiscount a = iterator.next();
+	ResponseEntity<MasterCreditCardDiscount> delete(@PathVariable("id") long id) {
+		for (Iterator<MasterCreditCardDiscount> iterator = lstCreditCardDiscounts.iterator(); iterator.hasNext();) {
+			MasterCreditCardDiscount a = iterator.next();
 			if (a.getId().equals(id)) {
 				iterator.remove();
 			}
@@ -92,35 +92,35 @@ public class CreditCardDiscountController {
 		// }
 
 		// userService.deleteUserById(id);
-		return new ResponseEntity<CreditCardDiscount>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<MasterCreditCardDiscount>(HttpStatus.NO_CONTENT);
 	}
 	
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(CreditCardDiscountController.class, args);
+        SpringApplication.run(MasterCreditCardDiscountController.class, args);
     }
-    private List<CreditCardDiscount> getAllDummie(){
-    	List<CreditCardDiscount> lstCreditCardDiscounts = new ArrayList<CreditCardDiscount>();
-		CreditCardDiscount CreditCardDiscount = new CreditCardDiscount();
+    private List<MasterCreditCardDiscount> getAllDummie(){
+    	List<MasterCreditCardDiscount> lstCreditCardDiscounts = new ArrayList<MasterCreditCardDiscount>();
+		MasterCreditCardDiscount CreditCardDiscount = new MasterCreditCardDiscount();
 		CreditCardDiscount.setId(1L);
 		CreditCardDiscount.setDescription("PRIMER CREDIT CARD 1");
 		lstCreditCardDiscounts.add(CreditCardDiscount);
 		
-		CreditCardDiscount CreditCardDiscount2 = new CreditCardDiscount();
+		MasterCreditCardDiscount CreditCardDiscount2 = new MasterCreditCardDiscount();
 		CreditCardDiscount2.setId(2L);
 		CreditCardDiscount2.setDescription("PRIMER CREDIT CARD 2");
 		lstCreditCardDiscounts.add(CreditCardDiscount2);
 		
-		CreditCardDiscount CreditCardDiscount3 = new CreditCardDiscount();
+		MasterCreditCardDiscount CreditCardDiscount3 = new MasterCreditCardDiscount();
 		CreditCardDiscount3.setId(3L);
 		CreditCardDiscount3.setDescription("PRIMER CREDIT CARD 3");
 		lstCreditCardDiscounts.add(CreditCardDiscount3);
 		
-		CreditCardDiscount CreditCardDiscount4 = new CreditCardDiscount();
+		MasterCreditCardDiscount CreditCardDiscount4 = new MasterCreditCardDiscount();
 		CreditCardDiscount4.setId(4L);
 		CreditCardDiscount4.setDescription("PRIMER CREDIT CARD 4");
 		lstCreditCardDiscounts.add(CreditCardDiscount4);
 		
-		CreditCardDiscount CreditCardDiscount5 = new CreditCardDiscount();
+		MasterCreditCardDiscount CreditCardDiscount5 = new MasterCreditCardDiscount();
 		CreditCardDiscount5.setId(5L);
 		CreditCardDiscount5.setDescription("PRIMER CREDIT CARD 5");
 		lstCreditCardDiscounts.add(CreditCardDiscount5);
