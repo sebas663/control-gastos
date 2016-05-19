@@ -31,9 +31,9 @@ public class TicketController {
 //        return new ResponseEntity<List<Ticket>>(lstBuys, HttpStatus.OK);
 //    }
 	
-    @RequestMapping("/Ticket/add")
-    ResponseEntity<Void> add(@RequestBody Ticket buy,UriComponentsBuilder ucBuilder) {
-    	idCounter++;
+//    @RequestMapping("/Ticket/add")
+//    ResponseEntity<Void> add(@RequestBody Ticket buy,UriComponentsBuilder ucBuilder) {
+//    	idCounter++;
     	
 //    	if (userService.isUserExist(user)) {
 //            System.out.println("A User with name " + user.getUsername() + " already exist");
@@ -41,11 +41,11 @@ public class TicketController {
 //        }
 //        userService.saveUser(user);
         
-    	HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/Buy/add/{id}").buildAndExpand(buy.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-    }
-//    @RequestMapping("/Buy/update/{id}")
+//    	HttpHeaders headers = new HttpHeaders();
+//        headers.setLocation(ucBuilder.path("/Buy/add/{id}").buildAndExpand(buy.getId()).toUri());
+//        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+//    }
+//    @RequestMapping("/Ticket/update/{id}")
 //    ResponseEntity<Ticket> update(@PathVariable("id") long id, @RequestBody Ticket buy) {
 //    	for(Ticket a:lstBuys){
 //    		if(a.getId().equals(id)){
@@ -71,7 +71,7 @@ public class TicketController {
 //        return new ResponseEntity<Ticket>(buy, HttpStatus.OK);
 //    }
 
-//	@RequestMapping("/Buy/delete/{id}")
+//	@RequestMapping("/Ticket/delete/{id}")
 //	ResponseEntity<Ticket> delete(@PathVariable("id") long id) {
 //		for (Iterator<Ticket> iterator = lstBuys.iterator(); iterator.hasNext();) {
 //			Ticket a = iterator.next();
@@ -89,8 +89,8 @@ public class TicketController {
 		// userService.deleteUserById(id);
 //		return new ResponseEntity<Ticket>(HttpStatus.NO_CONTENT);
 //	}
-//	 @RequestMapping("/Buy/save")
-//	    ResponseEntity<Void> save(@RequestBody List<Ticket> lst,UriComponentsBuilder ucBuilder) {
+	 @RequestMapping("/Ticket/save")
+	    ResponseEntity<Void> save(@RequestBody Ticket tiquet,UriComponentsBuilder ucBuilder) {
 		   // List<Buy> buys = requestWrapper.getBuys();
 //		    lstBuys.clear();
 //	    	if (userService.isUserExist(user)) {
@@ -99,10 +99,10 @@ public class TicketController {
 //	        }
 //	        userService.saveUser(user);
 	        
-//	    	HttpHeaders headers = new HttpHeaders();
-//	        headers.setLocation(ucBuilder.path("/Buy/add/{id}").buildAndExpand(buy.getId()).toUri());
-//	        return new ResponseEntity<Void>(HttpStatus.OK);
-//	    }
+	    	HttpHeaders headers = new HttpHeaders();
+	        headers.setLocation(ucBuilder.path("/Buy/add/{id}").buildAndExpand(tiquet.getId()).toUri());
+	        return new ResponseEntity<Void>(HttpStatus.OK);
+	    }
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(TicketController.class, args);
