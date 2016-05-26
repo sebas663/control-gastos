@@ -1,5 +1,6 @@
 package com.control.gastos.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpHeaders;
@@ -10,13 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.control.gastos.dtos.TicketDTO;
 import com.control.gastos.entities.Ticket;
+import com.control.gastos.interfaces.services.ITicketService;
 
 @RestController
 @EnableAutoConfiguration
 public class TicketController {
 
-	private Long idCounter = 1L;
+	@Autowired
+	private ITicketService ticketService;
     /**
 	 * 
 	 */
@@ -89,20 +93,18 @@ public class TicketController {
 		// userService.deleteUserById(id);
 //		return new ResponseEntity<Ticket>(HttpStatus.NO_CONTENT);
 //	}
-	 @RequestMapping("/Ticket/save")
-	    ResponseEntity<Void> save(@RequestBody Ticket tiquet,UriComponentsBuilder ucBuilder) {
-		   // List<Buy> buys = requestWrapper.getBuys();
-//		    lstBuys.clear();
-//	    	if (userService.isUserExist(user)) {
-//	            System.out.println("A User with name " + user.getUsername() + " already exist");
-//	            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-//	        }
-//	        userService.saveUser(user);
-	        
-	    	HttpHeaders headers = new HttpHeaders();
-	        headers.setLocation(ucBuilder.path("/Buy/add/{id}").buildAndExpand(tiquet.getId()).toUri());
-	        return new ResponseEntity<Void>(HttpStatus.OK);
-	    }
+	@RequestMapping("/Ticket/save")
+	ResponseEntity<Void> save(@RequestBody Ticket tiquet,UriComponentsBuilder ucBuilder) {
+		if (ticketService.isTicketExist(tiquet)) {
+			// System.out.println("A User with name " + user.getUsername() +
+			// " already exist");
+			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+		}
+		ticketService.save(new TicketDTO());
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(ucBuilder.path("/Ticket/add/{id}").buildAndExpand(tiquet.getId()).toUri());
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(TicketController.class, args);
