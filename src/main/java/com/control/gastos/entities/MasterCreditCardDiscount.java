@@ -1,19 +1,19 @@
 package com.control.gastos.entities;
 
 public class MasterCreditCardDiscount {
-	private Long id;
+	private Integer id;
 	private String description;
 	private String code;
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	/**

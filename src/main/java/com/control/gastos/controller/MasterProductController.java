@@ -24,7 +24,7 @@ public class MasterProductController {
 	 * 
 	 */
 	private List<MasterProduct> lstProducts;
-	private Long idCounter = 5L;
+	private Integer idCounter = 5;
     /**
 	 * 
 	 */
@@ -100,27 +100,27 @@ public class MasterProductController {
     private List<MasterProduct> getAllDummie(){
     	List<MasterProduct> lstProducts = new ArrayList<MasterProduct>();
 		MasterProduct Product = new MasterProduct();
-		Product.setId(1L);
+		Product.setId(1);
 		Product.setDescription("PRODUCTO 1");
 		lstProducts.add(Product);
 		
 		MasterProduct Product2 = new MasterProduct();
-		Product2.setId(2L);
+		Product2.setId(2);
 		Product2.setDescription("PRODUCTO 2");
 		lstProducts.add(Product2);
 		
 		MasterProduct Product3 = new MasterProduct();
-		Product3.setId(3L);
+		Product3.setId(3);
 		Product3.setDescription("PRODUCTO 3");
 		lstProducts.add(Product3);
 		
 		MasterProduct Product4 = new MasterProduct();
-		Product4.setId(4L);
+		Product4.setId(4);
 		Product4.setDescription("PRODUCTO 4");
 		lstProducts.add(Product4);
 		
 		MasterProduct Product5 = new MasterProduct();
-		Product5.setId(5L);
+		Product5.setId(5);
 		Product5.setDescription("PRODUCTO 5");
 		lstProducts.add(Product5);
 		return lstProducts;

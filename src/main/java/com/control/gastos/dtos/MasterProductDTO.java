@@ -1,7 +1,7 @@
 package com.control.gastos.dtos;
 
-public class MasterProduct {
-	private Long id;
+public class MasterProductDTO {
+	private Integer id;
 	private String description;
 	private String code;
 	private String brand;
@@ -23,21 +23,21 @@ public class MasterProduct {
 	/**
 	 * Constructor.
 	 */
-	public MasterProduct() {
+	public MasterProductDTO() {
 		super();
 	}
 
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

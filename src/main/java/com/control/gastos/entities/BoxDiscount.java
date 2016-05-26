@@ -1,9 +1,9 @@
 package com.control.gastos.entities;
 
 public class BoxDiscount {
-	private Long id;
-	private Long index;
-	private Long boxDiscountID;
+	private Integer id;
+	private Integer index;
+	private Integer boxDiscountID;
 	private Double amount;
 	private Double percent;
 	/**
@@ -15,37 +15,37 @@ public class BoxDiscount {
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	/**
 	 * @return the index
 	 */
-	public Long getIndex() {
+	public Integer getIndex() {
 		return index;
 	}
 	/**
 	 * @param index the index to set
 	 */
-	public void setIndex(Long index) {
+	public void setIndex(Integer index) {
 		this.index = index;
 	}
 	/**
 	 * @return the boxDiscountID
 	 */
-	public Long getBoxDiscountID() {
+	public Integer getBoxDiscountID() {
 		return boxDiscountID;
 	}
 	/**
 	 * @param boxDiscountID the boxDiscountID to set
 	 */
-	public void setBoxDiscountID(Long boxDiscountID) {
+	public void setBoxDiscountID(Integer boxDiscountID) {
 		this.boxDiscountID = boxDiscountID;
 	}
 	/**

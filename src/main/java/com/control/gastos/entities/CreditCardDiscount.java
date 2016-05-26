@@ -1,9 +1,9 @@
 package com.control.gastos.entities;
 
 public class CreditCardDiscount {
-	private Long id;
-	private Long index;
-	private Long creditCardDiscountID;
+	private Integer id;
+	private Integer index;
+	private Integer creditCardDiscountID;
 	private Double amount;
 	private Double base;
 	/**
@@ -15,37 +15,37 @@ public class CreditCardDiscount {
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	/**
 	 * @return the index
 	 */
-	public Long getIndex() {
+	public Integer getIndex() {
 		return index;
 	}
 	/**
 	 * @param index the index to set
 	 */
-	public void setIndex(Long index) {
+	public void setIndex(Integer index) {
 		this.index = index;
 	}
 	/**
 	 * @return the creditCardDiscountID
 	 */
-	public Long getCreditCardDiscountID() {
+	public Integer getCreditCardDiscountID() {
 		return creditCardDiscountID;
 	}
 	/**
 	 * @param creditCardDiscountID the creditCardDiscountID to set
 	 */
-	public void setCreditCardDiscountID(Long creditCardDiscountID) {
+	public void setCreditCardDiscountID(Integer creditCardDiscountID) {
 		this.creditCardDiscountID = creditCardDiscountID;
 	}
 	/**

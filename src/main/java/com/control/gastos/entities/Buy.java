@@ -2,9 +2,9 @@ package com.control.gastos.entities;
 
 
 public class Buy {
-	private Long id;
-	private Long index;
-	private Long productID;
+	private Integer id;
+	private Integer index;
+	private Integer productID;
 	private String external_code;
 	private Double quantity;
 	private Double price;
@@ -18,37 +18,37 @@ public class Buy {
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	/**
 	 * @return the index
 	 */
-	public Long getIndex() {
+	public Integer getIndex() {
 		return index;
 	}
 	/**
 	 * @param index the index to set
 	 */
-	public void setIndex(Long index) {
+	public void setIndex(Integer index) {
 		this.index = index;
 	}
 	/**
 	 * @return the productID
 	 */
-	public Long getProductID() {
+	public Integer getProductID() {
 		return productID;
 	}
 	/**
 	 * @param productID the productID to set
 	 */
-	public void setProductID(Long productID) {
+	public void setProductID(Integer productID) {
 		this.productID = productID;
 	}
 	/**

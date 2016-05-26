@@ -1,19 +1,19 @@
 package com.control.gastos.dtos;
 
-public class MasterBoxDiscount {
-	private Long id;
+public class MasterCreditCardDiscountDTO {
+	private Integer id;
 	private String description;
 	private String code;
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	/**

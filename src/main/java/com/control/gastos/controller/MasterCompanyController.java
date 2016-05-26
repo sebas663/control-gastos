@@ -1,7 +1,6 @@
 package com.control.gastos.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class MasterCompanyController {
 	 * 
 	 */
 	private List<MasterCompany> lstCompanys;
-	private Long idCounter = 0L;
+	private Integer idCounter = 0;
     /**
 	 * 
 	 */
@@ -101,27 +100,27 @@ public class MasterCompanyController {
     private List<MasterCompany> getAllDummie(){
     	List<MasterCompany> lstCompanys = new ArrayList<MasterCompany>();
 		MasterCompany Company = new MasterCompany();
-		Company.setId(1L);
+		Company.setId(1);
 		Company.setDescription("PRIMER EMPRESA 1");
 		lstCompanys.add(Company);
 		
 		MasterCompany Company2 = new MasterCompany();
-		Company2.setId(2L);
+		Company2.setId(2);
 		Company2.setDescription("PRIMER EMPRESA 2");
 		lstCompanys.add(Company2);
 		
 		MasterCompany Company3 = new MasterCompany();
-		Company3.setId(3L);
+		Company3.setId(3);
 		Company3.setDescription("PRIMER EMPRESA 3");
 		lstCompanys.add(Company3);
 		
 		MasterCompany Company4 = new MasterCompany();
-		Company4.setId(4L);
+		Company4.setId(4);
 		Company4.setDescription("PRIMER EMPRESA 4");
 		lstCompanys.add(Company4);
 		
 		MasterCompany Company5 = new MasterCompany();
-		Company5.setId(5L);
+		Company5.setId(5);
 		Company5.setDescription("PRIMER EMPRESA 5");
 		lstCompanys.add(Company5);
 		return lstCompanys;

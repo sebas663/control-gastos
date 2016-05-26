@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 public class Ticket {
-	private Long id;
-	private Long companyID;
+	private Integer id;
+	private Integer companyID;
 	private Date buyDate;
 	private Double subtotal;
 	private Double subtotalBoxDiscount;
@@ -25,28 +25,28 @@ public class Ticket {
 	/**
 	 * @return the id
 	 */
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
 	 * @return the companyID
 	 */
-	public Long getCompanyID() {
+	public Integer getCompanyID() {
 		return companyID;
 	}
 
 	/**
 	 * @param companyID the companyID to set
 	 */
-	public void setCompanyID(Long companyID) {
+	public void setCompanyID(Integer companyID) {
 		this.companyID = companyID;
 	}
 

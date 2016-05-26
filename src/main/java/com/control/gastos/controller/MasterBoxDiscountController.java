@@ -1,7 +1,6 @@
 package com.control.gastos.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class MasterBoxDiscountController {
 	 * 
 	 */
 	private List<MasterBoxDiscount> lstBoxDiscounts;
-	private Long idCounter = 0L;
+	private Integer idCounter = 0;
     /**
 	 * 
 	 */
@@ -101,27 +100,27 @@ public class MasterBoxDiscountController {
     private List<MasterBoxDiscount> getAllDummie(){
     	List<MasterBoxDiscount> lstBoxDiscounts = new ArrayList<MasterBoxDiscount>();
 		MasterBoxDiscount BoxDiscount = new MasterBoxDiscount();
-		BoxDiscount.setId(1L);
+		BoxDiscount.setId(1);
 		BoxDiscount.setDescription("PRIMER BOX DISCOUNT 1");
 		lstBoxDiscounts.add(BoxDiscount);
 		
 		MasterBoxDiscount BoxDiscount2 = new MasterBoxDiscount();
-		BoxDiscount2.setId(2L);
+		BoxDiscount2.setId(2);
 		BoxDiscount2.setDescription("PRIMER BOX DISCOUNT 2");
 		lstBoxDiscounts.add(BoxDiscount2);
 		
 		MasterBoxDiscount BoxDiscount3 = new MasterBoxDiscount();
-		BoxDiscount3.setId(3L);
+		BoxDiscount3.setId(3);
 		BoxDiscount3.setDescription("PRIMER BOX DISCOUNT 3");
 		lstBoxDiscounts.add(BoxDiscount3);
 		
 		MasterBoxDiscount BoxDiscount4 = new MasterBoxDiscount();
-		BoxDiscount4.setId(4L);
+		BoxDiscount4.setId(4);
 		BoxDiscount4.setDescription("PRIMER BOX DISCOUNT 4");
 		lstBoxDiscounts.add(BoxDiscount4);
 		
 		MasterBoxDiscount BoxDiscount5 = new MasterBoxDiscount();
-		BoxDiscount5.setId(5L);
+		BoxDiscount5.setId(5);
 		BoxDiscount5.setDescription("PRIMER BOX DISCOUNT 5");
 		lstBoxDiscounts.add(BoxDiscount5);
 		return lstBoxDiscounts;
