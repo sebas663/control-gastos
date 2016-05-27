@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpHeaders;
@@ -16,10 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.control.gastos.entities.MasterProduct;
+import com.control.gastos.interfaces.services.IMasterProductService;
 
 @RestController
 @EnableAutoConfiguration
 public class MasterProductController {
+	
+	@Autowired
+	private IMasterProductService masterProductService;
 	/**
 	 * 
 	 */
