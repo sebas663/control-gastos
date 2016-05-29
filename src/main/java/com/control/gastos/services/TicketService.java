@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.control.gastos.dtos.TicketDTO;
 import com.control.gastos.entities.Ticket;
 import com.control.gastos.interfaces.services.ITicketService;
-import com.control.gastos.jpa.repository.TicketRepository;
+import com.control.gastos.jpa.repository.interfaces.TicketRepository;
 
 @Service("ticketService")
 public class TicketService extends BaseService implements ITicketService{

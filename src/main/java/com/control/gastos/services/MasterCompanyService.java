@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.control.gastos.entities.MasterCompany;
 import com.control.gastos.interfaces.services.IMasterCompanyService;
-import com.control.gastos.jpa.repository.MasterCompanyRepository;
+import com.control.gastos.jpa.repository.interfaces.MasterCompanyRepository;
 
 @Service("masterCompanyService")
 public class MasterCompanyService extends BaseService implements IMasterCompanyService{

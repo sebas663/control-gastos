@@ -1,4 +1,4 @@
-package com.control.gastos.jpa.repository;
+package com.control.gastos.jpa.repository.interfaces;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
