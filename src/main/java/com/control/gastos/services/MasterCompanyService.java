@@ -6,14 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.control.gastos.dtos.MasterCompanyDTO;
 import com.control.gastos.entities.MasterCompany;
 import com.control.gastos.interfaces.services.IMasterCompanyService;
-import com.control.gastos.jpa.repository.interfaces.MasterCompanyRepository;
+import com.control.gastos.jpa.repository.interfaces.IMasterCompanyRepository;
 
 @Service("masterCompanyService")
 public class MasterCompanyService extends BaseService implements IMasterCompanyService{
 	@Autowired 
-	private MasterCompanyRepository masterCompanyRepository;
+	private IMasterCompanyRepository masterCompanyRepository;
 	
 	private List<MasterCompany> getAllDummie(){
     	List<MasterCompany> lstCompanys = new ArrayList<MasterCompany>();
@@ -42,5 +43,41 @@ public class MasterCompanyService extends BaseService implements IMasterCompanyS
 		Company5.setDescription("PRIMER EMPRESA 5");
 		lstCompanys.add(Company5);
 		return lstCompanys;
+	}
+
+	@Override
+	public List<MasterCompanyDTO> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isExist(MasterCompanyDTO company) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void save(MasterCompanyDTO company) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public MasterCompanyDTO findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(MasterCompanyDTO currentCompany, MasterCompanyDTO company) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(MasterCompanyDTO currentCompany) {
+		// TODO Auto-generated method stub
+		
 	}
 }
