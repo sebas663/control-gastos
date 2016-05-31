@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.control.gastos.dtos.TicketDTO;
-import com.control.gastos.entities.Ticket;
 import com.control.gastos.services.interfaces.ITicketService;
 
 @RestController
 @EnableAutoConfiguration
 public class TicketController {
-
+    /**
+     * 
+     */
 	@Autowired
 	private ITicketService ticketService;
     /**
@@ -27,87 +28,28 @@ public class TicketController {
 	public TicketController() {
 		super();
 	}
-//	@RequestMapping("/Ticket/getAll")
-//	ResponseEntity<List<Ticket>> getAll() {
-//		if(lstBuys.isEmpty()){
-//            return new ResponseEntity<List<Ticket>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-//        }
-//        return new ResponseEntity<List<Ticket>>(lstBuys, HttpStatus.OK);
-//    }
-	
-//    @RequestMapping("/Ticket/add")
-//    ResponseEntity<Void> add(@RequestBody Ticket buy,UriComponentsBuilder ucBuilder) {
-//    	idCounter++;
-    	
-//    	if (userService.isUserExist(user)) {
-//            System.out.println("A User with name " + user.getUsername() + " already exist");
-//            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-//        }
-//        userService.saveUser(user);
-        
-//    	HttpHeaders headers = new HttpHeaders();
-//        headers.setLocation(ucBuilder.path("/Buy/add/{id}").buildAndExpand(buy.getId()).toUri());
-//        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-//    }
-//    @RequestMapping("/Ticket/update/{id}")
-//    ResponseEntity<Ticket> update(@PathVariable("id") long id, @RequestBody Ticket buy) {
-//    	for(Ticket a:lstBuys){
-//    		if(a.getId().equals(id)){
-//    		   a.setBuyDate(buy.getBuyDate());
-//    		   a.setCompanyID(buy.getCompanyID());
-//    		   a.setExternal_code(buy.getExternal_code());
-//    		   a.setPrice(buy.getPrice());
-//    		   a.setProductID(buy.getProductID());
-//    		   a.setQuantity(buy.getQuantity());
-//    		   a.setTotal(buy.getPrice() * buy.getQuantity());
-//    		}
-//    	}
-    	  
-//        User currentUser = userService.findById(id);
-//        if (currentUser==null) {
-//            System.out.println("User with id " + id + " not found");
-//            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-//        }
-//        currentUser.setUsername(user.getUsername());
-//        currentUser.setAddress(user.getAddress());
-//        currentUser.setEmail(user.getEmail());
-//        userService.updateUser(currentUser);
-//        return new ResponseEntity<Ticket>(buy, HttpStatus.OK);
-//    }
-
-//	@RequestMapping("/Ticket/delete/{id}")
-//	ResponseEntity<Ticket> delete(@PathVariable("id") long id) {
-//		for (Iterator<Ticket> iterator = lstBuys.iterator(); iterator.hasNext();) {
-//			Ticket a = iterator.next();
-//			if (a.getId().equals(id)) {
-//				iterator.remove();
-//			}
-//		}
-		// Buy buy = userService.findById(id);
-		// if (buy == null) {
-		// System.out.println("Unable to delete. User with id " + id + " not
-		// found");
-		// return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-		// }
-
-		// userService.deleteUserById(id);
-//		return new ResponseEntity<Ticket>(HttpStatus.NO_CONTENT);
-//	}
+    /**
+     * 
+     * @param tiquet
+     * @param ucBuilder
+     * @return
+     */
 	@RequestMapping("/Ticket/save")
 	ResponseEntity<Void> save(@RequestBody TicketDTO tiquet,UriComponentsBuilder ucBuilder) {
 		if (tiquet.getId() != null && ticketService.isExist(tiquet.getId())) {
-			// System.out.println("A User with name " + user.getUsername() +
-			// " already exist");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
-		ticketService.saveOrUpdate(new TicketDTO(), Ticket.class);
+		ticketService.saveOrUpdate(tiquet);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/Ticket/add/{id}").buildAndExpand(tiquet.getId()).toUri());
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-
+    /**
+     * 
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         SpringApplication.run(TicketController.class, args);
     }
-
 }

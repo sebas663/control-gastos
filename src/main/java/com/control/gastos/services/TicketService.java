@@ -18,7 +18,17 @@ public class TicketService extends BaseService<Ticket, TicketDTO, Integer> imple
 	
 	@Autowired
 	private ITicketRepository ticketRepository;
-	
+	/**
+	 * 
+	 * @param typeT
+	 * @param typeS
+	 */
+	public TicketService(Class<Ticket> typeT, Class<TicketDTO> typeS) {
+		super(typeT, typeS);
+	}
+	/**
+	 * 
+	 */
 	@Override
 	public List<TicketDTO> findByBuyDate(Date buyDate) {
 		List<TicketDTO> l = new ArrayList<TicketDTO>();

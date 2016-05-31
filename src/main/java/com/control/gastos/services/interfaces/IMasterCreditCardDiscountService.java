@@ -1,5 +1,7 @@
 package com.control.gastos.services.interfaces;
 
-public interface IMasterCreditCardDiscountService {
+import com.control.gastos.dtos.MasterCreditCardDiscountDTO;
+import com.control.gastos.entities.MasterCreditCardDiscount;
 
+public interface IMasterCreditCardDiscountService extends IBaseService<MasterCreditCardDiscount, MasterCreditCardDiscountDTO, Integer>{
 }

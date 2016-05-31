@@ -13,9 +13,19 @@ import com.control.gastos.services.interfaces.IMasterCompanyService;
 
 @Service("masterCompanyService")
 public class MasterCompanyService extends BaseService<MasterCompany, MasterCompanyDTO, Integer> implements IMasterCompanyService{
+    /**
+     * 
+     */
 	@Autowired 
 	private IMasterCompanyRepository masterCompanyRepository;
-	
+	/**
+	 * 
+	 * @param typeT
+	 * @param typeS
+	 */
+	public MasterCompanyService(Class<MasterCompany> typeT, Class<MasterCompanyDTO> typeS) {
+		super(typeT, typeS);
+	}
 	private List<MasterCompany> getAllDummie(){
     	List<MasterCompany> lstCompanys = new ArrayList<MasterCompany>();
 		MasterCompany Company = new MasterCompany();

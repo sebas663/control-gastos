@@ -16,18 +16,23 @@ public class BaseService<T, S, ID extends Serializable> implements IBaseService<
     private IBaseRepository<T, ID> baseRepository;
 	@Autowired
 	private Mapper dozerBeanMapper;
+	private final Class<T> typeT;
+	private final Class<S> typeS;
 	/**
-	 * @return
+	 * @param typeT
+	 * @param typeS
 	 */
-	public Mapper getDozerBeanMapper() {
-		return dozerBeanMapper;
+	public BaseService(Class<T> typeT, Class<S> typeS) {
+		super();
+		this.typeT = typeT;
+		this.typeS = typeS;
 	}
 	@Override
-	public List<S> getAll(final Class<S> destType) {
+	public List<S> getAll() {
 		List<S> list = new ArrayList<S>();
 		List<T> lst = baseRepository.findAll();
 		for(T t:lst){
-			list.add(getDozerBeanMapper().map(t, destType));
+			list.add(getDozerBeanMapper().map(t, this.getTypeS()));
 		}
 		return list;
 	}
@@ -37,21 +42,41 @@ public class BaseService<T, S, ID extends Serializable> implements IBaseService<
 	}
 	@Override
 	@Transactional
-	public void saveOrUpdate(S entity, final Class<T> destType) {
-		T t = getDozerBeanMapper().map(entity, destType);
+	public void saveOrUpdate(S entity) {
+		T t = getDozerBeanMapper().map(entity, this.getTypeT());
 		baseRepository.save(t);
 	}
 	@Override
-	public S findById(ID id, final Class<S> destType) {
+	public S findById(ID id) {
 		T t = baseRepository.findOne(id);
-		S s = getDozerBeanMapper().map(t, destType);
+		S s = getDozerBeanMapper().map(t, this.getTypeS());
 		return s;
 	}
 	@Override
 	@Transactional
-	public void delete(S entity, final Class<T> destType) {
-		T t = getDozerBeanMapper().map(entity, destType);
+	public void delete(S entity) {
+		T t = getDozerBeanMapper().map(entity, this.getTypeT());
 		baseRepository.delete(t);
 	}
+	/**
+	 * @return
+	 */
+	public Mapper getDozerBeanMapper() {
+		return dozerBeanMapper;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public Class<T> getTypeT() {
+        return this.typeT;
+    }
+	/**
+	 * 
+	 * @return
+	 */
+	public Class<S> getTypeS() {
+        return this.typeS;
+    }
 	
 }

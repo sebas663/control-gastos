@@ -1,7 +1,5 @@
 package com.control.gastos.controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,118 +14,86 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.control.gastos.entities.MasterBoxDiscount;
+import com.control.gastos.dtos.MasterBoxDiscountDTO;
 import com.control.gastos.services.interfaces.IMasterBoxDiscountService;
 
 @RestController
 @EnableAutoConfiguration
 public class MasterBoxDiscountController {
-	
-	@Autowired
-	private IMasterBoxDiscountService masterBoxDiscountService;
 	/**
 	 * 
 	 */
-	private List<MasterBoxDiscount> lstBoxDiscounts;
-	private Integer idCounter = 0;
+	@Autowired
+	private IMasterBoxDiscountService masterBoxDiscountService;
     /**
 	 * 
 	 */
 	public MasterBoxDiscountController() {
 		super();
-		lstBoxDiscounts = getAllDummie();
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	@RequestMapping("/BoxDiscount/getAll")
-	ResponseEntity<List<MasterBoxDiscount>> getAll() {
+	ResponseEntity<List<MasterBoxDiscountDTO>> getAll() {
+		List<MasterBoxDiscountDTO> lstBoxDiscounts = masterBoxDiscountService.getAll();
 		if(lstBoxDiscounts.isEmpty()){
-            return new ResponseEntity<List<MasterBoxDiscount>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+            return new ResponseEntity<List<MasterBoxDiscountDTO>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<MasterBoxDiscount>>(lstBoxDiscounts, HttpStatus.OK);
+        return new ResponseEntity<List<MasterBoxDiscountDTO>>(lstBoxDiscounts, HttpStatus.OK);
     }
-	
+	/**
+	 * 
+	 * @param masterBoxDiscountDTO
+	 * @param ucBuilder
+	 * @return
+	 */
     @RequestMapping("/BoxDiscount/create")
-    ResponseEntity<Void> create(@RequestBody MasterBoxDiscount BoxDiscount,UriComponentsBuilder ucBuilder) {
-    	idCounter++;
-    	BoxDiscount.setId(idCounter);
-    	lstBoxDiscounts.add(BoxDiscount);
-//    	if (userService.isUserExist(user)) {
-//            System.out.println("A User with name " + user.getUsername() + " already exist");
-//            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-//        }
-//        userService.saveUser(user);
-        
+    ResponseEntity<Void> create(@RequestBody MasterBoxDiscountDTO masterBoxDiscountDTO,UriComponentsBuilder ucBuilder) {
+    	if (masterBoxDiscountDTO.getId() != null && masterBoxDiscountService.isExist(masterBoxDiscountDTO.getId())) {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+    	masterBoxDiscountService.saveOrUpdate(masterBoxDiscountDTO);
     	HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/BoxDiscount/add/{id}").buildAndExpand(BoxDiscount.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/BoxDiscount/add/{id}").buildAndExpand(masterBoxDiscountDTO.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
+    /**
+     * 
+     * @param id
+     * @param BoxDiscount
+     * @return
+     */
     @RequestMapping("/BoxDiscount/update/{id}")
-    ResponseEntity<MasterBoxDiscount> update(@PathVariable("id") long id, @RequestBody MasterBoxDiscount BoxDiscount) {
-    	for(MasterBoxDiscount a:lstBoxDiscounts){
-    		if(a.getId().equals(id)){
-    		a.setDescription(BoxDiscount.getDescription());
-    		}
-    	}
-    	  
-//        User currentUser = userService.findById(id);
-//        if (currentUser==null) {
-//            System.out.println("User with id " + id + " not found");
-//            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-//        }
-//        currentUser.setUsername(user.getUsername());
-//        currentUser.setAddress(user.getAddress());
-//        currentUser.setEmail(user.getEmail());
-//        userService.updateUser(currentUser);
-        return new ResponseEntity<MasterBoxDiscount>(BoxDiscount, HttpStatus.OK);
+    ResponseEntity<MasterBoxDiscountDTO> update(@PathVariable("id") int id, @RequestBody MasterBoxDiscountDTO masterBoxDiscountDTO) {
+    	MasterBoxDiscountDTO current = masterBoxDiscountService.findById(id);
+        if (current==null) {
+            return new ResponseEntity<MasterBoxDiscountDTO>(HttpStatus.NOT_FOUND);
+        }
+        masterBoxDiscountService.saveOrUpdate(masterBoxDiscountDTO);
+        return new ResponseEntity<MasterBoxDiscountDTO>(masterBoxDiscountDTO, HttpStatus.OK);
     }
-
+    /**
+     * 
+     * @param id
+     * @return
+     */
 	@RequestMapping("/BoxDiscount/delete/{id}")
-	ResponseEntity<MasterBoxDiscount> delete(@PathVariable("id") long id) {
-		for (Iterator<MasterBoxDiscount> iterator = lstBoxDiscounts.iterator(); iterator.hasNext();) {
-			MasterBoxDiscount a = iterator.next();
-			if (a.getId().equals(id)) {
-				iterator.remove();
-			}
-		}
-		// BoxDiscount BoxDiscount = userService.findById(id);
-		// if (BoxDiscount == null) {
-		// System.out.println("Unable to delete. User with id " + id + " not
-		// found");
-		// return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-		// }
-
-		// userService.deleteUserById(id);
-		return new ResponseEntity<MasterBoxDiscount>(HttpStatus.NO_CONTENT);
+	ResponseEntity<MasterBoxDiscountDTO> delete(@PathVariable("id") int id) {
+		MasterBoxDiscountDTO current = masterBoxDiscountService.findById(id);
+		if (current==null) {
+            return new ResponseEntity<MasterBoxDiscountDTO>(HttpStatus.NOT_FOUND);
+        }
+		masterBoxDiscountService.delete(current);
+		return new ResponseEntity<MasterBoxDiscountDTO>(HttpStatus.NO_CONTENT);
 	}
-	
+	/**
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
     public static void main(String[] args) throws Exception {
         SpringApplication.run(MasterBoxDiscountController.class, args);
     }
-    private List<MasterBoxDiscount> getAllDummie(){
-    	List<MasterBoxDiscount> lstBoxDiscounts = new ArrayList<MasterBoxDiscount>();
-		MasterBoxDiscount BoxDiscount = new MasterBoxDiscount();
-		BoxDiscount.setId(1);
-		BoxDiscount.setDescription("PRIMER BOX DISCOUNT 1");
-		lstBoxDiscounts.add(BoxDiscount);
-		
-		MasterBoxDiscount BoxDiscount2 = new MasterBoxDiscount();
-		BoxDiscount2.setId(2);
-		BoxDiscount2.setDescription("PRIMER BOX DISCOUNT 2");
-		lstBoxDiscounts.add(BoxDiscount2);
-		
-		MasterBoxDiscount BoxDiscount3 = new MasterBoxDiscount();
-		BoxDiscount3.setId(3);
-		BoxDiscount3.setDescription("PRIMER BOX DISCOUNT 3");
-		lstBoxDiscounts.add(BoxDiscount3);
-		
-		MasterBoxDiscount BoxDiscount4 = new MasterBoxDiscount();
-		BoxDiscount4.setId(4);
-		BoxDiscount4.setDescription("PRIMER BOX DISCOUNT 4");
-		lstBoxDiscounts.add(BoxDiscount4);
-		
-		MasterBoxDiscount BoxDiscount5 = new MasterBoxDiscount();
-		BoxDiscount5.setId(5);
-		BoxDiscount5.setDescription("PRIMER BOX DISCOUNT 5");
-		lstBoxDiscounts.add(BoxDiscount5);
-		return lstBoxDiscounts;
-	}
 }

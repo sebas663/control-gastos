@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface IBaseService<T, S, ID extends Serializable> {
 	
-	List<S> getAll(final Class<S> destType);
+	List<S> getAll();
 
 	boolean isExist(ID id);
 
-	void saveOrUpdate(S entity, final Class<T> destType);
+	void saveOrUpdate(S entity);
 
-	S findById(ID id, final Class<S> destType);
+	S findById(ID id);
 
-	void delete(S entity, final Class<T> destType);
+	void delete(S entity);
 }
