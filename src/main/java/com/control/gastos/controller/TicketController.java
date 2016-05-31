@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.control.gastos.dtos.TicketDTO;
-import com.control.gastos.interfaces.services.ITicketService;
+import com.control.gastos.entities.Ticket;
+import com.control.gastos.services.interfaces.ITicketService;
 
 @RestController
 @EnableAutoConfiguration
@@ -94,12 +95,12 @@ public class TicketController {
 //	}
 	@RequestMapping("/Ticket/save")
 	ResponseEntity<Void> save(@RequestBody TicketDTO tiquet,UriComponentsBuilder ucBuilder) {
-		if (ticketService.isTicketExist(tiquet)) {
+		if (tiquet.getId() != null && ticketService.isExist(tiquet.getId())) {
 			// System.out.println("A User with name " + user.getUsername() +
 			// " already exist");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
-		ticketService.save(new TicketDTO());
+		ticketService.saveOrUpdate(new TicketDTO(), Ticket.class);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/Ticket/add/{id}").buildAndExpand(tiquet.getId()).toUri());
 		return new ResponseEntity<Void>(HttpStatus.OK);

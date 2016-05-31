@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.control.gastos.dtos.MasterCompanyDTO;
 import com.control.gastos.entities.MasterCompany;
-import com.control.gastos.interfaces.services.IMasterCompanyService;
 import com.control.gastos.jpa.repository.interfaces.IMasterCompanyRepository;
+import com.control.gastos.services.interfaces.IMasterCompanyService;
 
 @Service("masterCompanyService")
-public class MasterCompanyService extends BaseService implements IMasterCompanyService{
+public class MasterCompanyService extends BaseService<MasterCompany, MasterCompanyDTO, Integer> implements IMasterCompanyService{
 	@Autowired 
 	private IMasterCompanyRepository masterCompanyRepository;
 	
@@ -44,40 +44,5 @@ public class MasterCompanyService extends BaseService implements IMasterCompanyS
 		lstCompanys.add(Company5);
 		return lstCompanys;
 	}
-
-	@Override
-	public List<MasterCompanyDTO> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isExist(MasterCompanyDTO company) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void save(MasterCompanyDTO company) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public MasterCompanyDTO findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void update(MasterCompanyDTO currentCompany, MasterCompanyDTO company) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(MasterCompanyDTO currentCompany) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

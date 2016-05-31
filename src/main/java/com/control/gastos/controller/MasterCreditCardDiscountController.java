@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.control.gastos.entities.MasterCreditCardDiscount;
-import com.control.gastos.interfaces.services.IMasterCreditCardDiscountService;
+import com.control.gastos.services.interfaces.IMasterCreditCardDiscountService;
 
 @RestController
 @EnableAutoConfiguration

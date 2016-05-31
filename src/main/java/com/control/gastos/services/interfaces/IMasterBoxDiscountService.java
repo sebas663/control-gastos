@@ -1,4 +1,4 @@
-package com.control.gastos.interfaces.services;
+package com.control.gastos.services.interfaces;
 
 public interface IMasterBoxDiscountService {
 

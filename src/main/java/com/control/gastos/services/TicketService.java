@@ -1,34 +1,31 @@
 package com.control.gastos.services;
 
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.control.gastos.dtos.TicketDTO;
 import com.control.gastos.entities.Ticket;
-import com.control.gastos.interfaces.services.ITicketService;
 import com.control.gastos.jpa.repository.interfaces.ITicketRepository;
+import com.control.gastos.services.interfaces.ITicketService;
 
 @Service("ticketService")
-public class TicketService extends BaseService implements ITicketService{
+public class TicketService extends BaseService<Ticket, TicketDTO, Integer> implements ITicketService{
 	
-	@Autowired 
+	@Autowired
 	private ITicketRepository ticketRepository;
 	
 	@Override
-	public void save(TicketDTO obj) {
-		Ticket ticket = new Ticket();
-		ticket = getDozerBeanMapper().map(obj, Ticket.class);
-		ticketRepository.save(ticket);
-	}
-
-	@Override
-	public boolean isTicketExist(TicketDTO ticket) {
-		boolean exist = false;
-		if(ticket.getId() != null){
-			exist = ticketRepository.exists(ticket.getId());
+	public List<TicketDTO> findByBuyDate(Date buyDate) {
+		List<TicketDTO> l = new ArrayList<TicketDTO>();
+		List<Ticket> lst = ticketRepository.findByBuyDate(buyDate);
+		for(Ticket t:lst){
+			l.add(this.getDozerBeanMapper().map(t,TicketDTO.class));
 		}
-		return exist;
+		return l;
 	}
-	
 }
