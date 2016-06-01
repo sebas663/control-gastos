@@ -1,5 +1,8 @@
 package com.control.gastos.entities;
 
+import javax.persistence.Entity;
+
+@Entity
 public class BoxDiscount {
 	private Integer id;
 	private Integer index;

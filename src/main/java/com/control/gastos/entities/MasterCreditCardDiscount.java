@@ -1,5 +1,7 @@
 package com.control.gastos.entities;
+import javax.persistence.Entity;
 
+@Entity
 public class MasterCreditCardDiscount {
 	private Integer id;
 	private String description;

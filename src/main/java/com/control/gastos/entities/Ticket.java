@@ -3,7 +3,17 @@ package com.control.gastos.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class Ticket {
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private Integer companyID;
 	private Date buyDate;
