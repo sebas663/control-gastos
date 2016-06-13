@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.control.gastos.dtos.MasterBoxDiscountDTO;
 import com.control.gastos.entities.MasterBoxDiscount;
+import com.control.gastos.jpa.repository.interfaces.IBaseRepository;
 import com.control.gastos.jpa.repository.interfaces.IMasterBoxDiscountRepository;
 import com.control.gastos.services.interfaces.IMasterBoxDiscountService;
 
@@ -20,9 +21,11 @@ public class MasterBoxDiscountService extends BaseService<MasterBoxDiscount, Mas
 	 * 
 	 * @param typeT
 	 * @param typeS
+	 * @param baseRepository
 	 */
-	public MasterBoxDiscountService(Class<MasterBoxDiscount> typeT, Class<MasterBoxDiscountDTO> typeS) {
-		super(typeT, typeS);
+	public MasterBoxDiscountService(Class<MasterBoxDiscount> typeT, Class<MasterBoxDiscountDTO> typeS,
+			IBaseRepository<MasterBoxDiscount, Integer> baseRepository) {
+		super(typeT, typeS, baseRepository);
 	}
 
 	private List<MasterBoxDiscount> getAllDummie(){

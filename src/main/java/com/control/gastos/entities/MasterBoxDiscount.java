@@ -1,8 +1,15 @@
 package com.control.gastos.entities;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "master_box_discount")
 public class MasterBoxDiscount {
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String description;
 	private String code;

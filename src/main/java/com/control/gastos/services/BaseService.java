@@ -13,20 +13,21 @@ import com.control.gastos.jpa.repository.interfaces.IBaseRepository;
 import com.control.gastos.services.interfaces.IBaseService;
 
 public class BaseService<T, S, ID extends Serializable> implements IBaseService<T, S, ID>{
-	@Autowired
-    private IBaseRepository<T, ID> baseRepository;
+   
 	@Autowired
 	private Mapper dozerBeanMapper;
+	private IBaseRepository<T, ID> baseRepository;
 	private final Class<T> typeT;
 	private final Class<S> typeS;
 	/**
 	 * @param typeT
 	 * @param typeS
 	 */
-	public BaseService(Class<T> typeT, Class<S> typeS) {
+	public BaseService(Class<T> typeT, Class<S> typeS,IBaseRepository<T, ID> baseRepository) {
 		super();
 		this.typeT = typeT;
 		this.typeS = typeS;
+		this.baseRepository = baseRepository;
 	}
 	@Override
 	public List<S> getAll() {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.control.gastos.dtos.MasterCreditCardDiscountDTO;
 import com.control.gastos.entities.MasterCreditCardDiscount;
+import com.control.gastos.jpa.repository.interfaces.IBaseRepository;
 import com.control.gastos.jpa.repository.interfaces.IMasterCreditCardDiscountRepository;
 import com.control.gastos.services.interfaces.IMasterCreditCardDiscountService;
 
@@ -18,15 +19,18 @@ public class MasterCreditCardDiscountService extends BaseService<MasterCreditCar
 	 */
 	@Autowired
 	private IMasterCreditCardDiscountRepository masterCreditCardDiscountRepository;
+	
 	/**
-	 * 
 	 * @param typeT
 	 * @param typeS
+	 * @param baseRepository
 	 */
 	public MasterCreditCardDiscountService(Class<MasterCreditCardDiscount> typeT,
-			Class<MasterCreditCardDiscountDTO> typeS) {
-		super(typeT, typeS);
+			Class<MasterCreditCardDiscountDTO> typeS,
+			IBaseRepository<MasterCreditCardDiscount, Integer> baseRepository) {
+		super(typeT, typeS, baseRepository);
 	}
+
 	private List<MasterCreditCardDiscount> getAllDummie(){
     	List<MasterCreditCardDiscount> lstCreditCardDiscounts = new ArrayList<MasterCreditCardDiscount>();
 		MasterCreditCardDiscount CreditCardDiscount = new MasterCreditCardDiscount();

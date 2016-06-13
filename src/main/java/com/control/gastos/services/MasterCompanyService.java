@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.control.gastos.dtos.MasterCompanyDTO;
 import com.control.gastos.entities.MasterCompany;
+import com.control.gastos.jpa.repository.interfaces.IBaseRepository;
 import com.control.gastos.jpa.repository.interfaces.IMasterCompanyRepository;
 import com.control.gastos.services.interfaces.IMasterCompanyService;
 
@@ -18,14 +19,17 @@ public class MasterCompanyService extends BaseService<MasterCompany, MasterCompa
      */
 	@Autowired 
 	private IMasterCompanyRepository masterCompanyRepository;
+	
 	/**
-	 * 
 	 * @param typeT
 	 * @param typeS
+	 * @param baseRepository
 	 */
-	public MasterCompanyService(Class<MasterCompany> typeT, Class<MasterCompanyDTO> typeS) {
-		super(typeT, typeS);
+	public MasterCompanyService(Class<MasterCompany> typeT, Class<MasterCompanyDTO> typeS,
+			IBaseRepository<MasterCompany, Integer> baseRepository) {
+		super(typeT, typeS, baseRepository);
 	}
+
 	private List<MasterCompany> getAllDummie(){
     	List<MasterCompany> lstCompanys = new ArrayList<MasterCompany>();
 		MasterCompany Company = new MasterCompany();

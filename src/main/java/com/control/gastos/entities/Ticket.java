@@ -1,19 +1,20 @@
 package com.control.gastos.entities;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
+@Table(name = "ticket")
 public class Ticket {
-	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private Integer companyID;
 	private Date buyDate;
@@ -21,9 +22,9 @@ public class Ticket {
 	private Double subtotalBoxDiscount;
 	private Double subtotalCreditCardDiscount;
 	private Double total;
-	private List<Buy> buys;
-	private List<BoxDiscount> boxDiscounts;
-	private List<CreditCardDiscount> creditCardDiscounts;
+	private Set<Buy> buys;
+	private Set<BoxDiscount> boxDiscounts;
+	private Set<CreditCardDiscount> creditCardDiscounts;
 
 	/**
 	 * Constructor.
@@ -35,6 +36,8 @@ public class Ticket {
 	/**
 	 * @return the id
 	 */
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	public Integer getId() {
 		return id;
 	}
@@ -133,42 +136,45 @@ public class Ticket {
 	/**
 	 * @return the buys
 	 */
-	public List<Buy> getBuys() {
+	@OneToMany(targetEntity=Buy.class, fetch=FetchType.EAGER)
+	public Set<Buy> getBuys() {
 		return buys;
 	}
 
 	/**
 	 * @param buys the buys to set
 	 */
-	public void setBuys(List<Buy> buys) {
+	public void setBuys(Set<Buy> buys) {
 		this.buys = buys;
 	}
 
 	/**
 	 * @return the boxDiscounts
 	 */
-	public List<BoxDiscount> getBoxDiscounts() {
+	@OneToMany(targetEntity=BoxDiscount.class,fetch=FetchType.EAGER)
+	public Set<BoxDiscount> getBoxDiscounts() {
 		return boxDiscounts;
 	}
 
 	/**
 	 * @param boxDiscounts the boxDiscounts to set
 	 */
-	public void setBoxDiscounts(List<BoxDiscount> boxDiscounts) {
+	public void setBoxDiscounts(Set<BoxDiscount> boxDiscounts) {
 		this.boxDiscounts = boxDiscounts;
 	}
 
 	/**
 	 * @return the creditCardDiscounts
 	 */
-	public List<CreditCardDiscount> getCreditCardDiscounts() {
+	@OneToMany(targetEntity=CreditCardDiscount.class, fetch=FetchType.EAGER)
+	public Set<CreditCardDiscount> getCreditCardDiscounts() {
 		return creditCardDiscounts;
 	}
 
 	/**
 	 * @param creditCardDiscounts the creditCardDiscounts to set
 	 */
-	public void setCreditCardDiscounts(List<CreditCardDiscount> creditCardDiscounts) {
+	public void setCreditCardDiscounts(Set<CreditCardDiscount> creditCardDiscounts) {
 		this.creditCardDiscounts = creditCardDiscounts;
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.control.gastos.dtos.MasterProductDTO;
 import com.control.gastos.entities.MasterProduct;
+import com.control.gastos.jpa.repository.interfaces.IBaseRepository;
 import com.control.gastos.jpa.repository.interfaces.IMasterProductRepository;
 import com.control.gastos.services.interfaces.IMasterProductService;
 
@@ -18,15 +19,17 @@ public class MasterProductService extends BaseService<MasterProduct, MasterProdu
      */
 	@Autowired 
 	private IMasterProductRepository masterProductRepository;
+	
 	/**
-	 * 
 	 * @param typeT
 	 * @param typeS
+	 * @param baseRepository
 	 */
-	public MasterProductService(Class<MasterProduct> typeT, Class<MasterProductDTO> typeS) {
-		super(typeT, typeS);
+	public MasterProductService(Class<MasterProduct> typeT, Class<MasterProductDTO> typeS,
+			IBaseRepository<MasterProduct, Integer> baseRepository) {
+		super(typeT, typeS, baseRepository);
 	}
-	
+
 	private List<MasterProduct> getAllDummie() {
 		List<MasterProduct> lstProducts = new ArrayList<MasterProduct>();
 		MasterProduct Product = new MasterProduct();
