@@ -1,6 +1,9 @@
 package com.control.gastos.jpa.repository.interfaces;
 
-import com.control.gastos.entities.MasterCreditCardDiscount;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface IMasterCreditCardDiscountRepository extends IBaseRepository<MasterCreditCardDiscount, Integer>{
+import com.control.gastos.entities.MasterCreditCardDiscount;
+@Repository
+public interface IMasterCreditCardDiscountRepository extends JpaRepository<MasterCreditCardDiscount, Integer>,IBaseRepository<MasterCreditCardDiscount, Integer>{
 }

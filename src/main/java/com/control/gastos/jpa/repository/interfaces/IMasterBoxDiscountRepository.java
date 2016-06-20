@@ -1,6 +1,9 @@
 package com.control.gastos.jpa.repository.interfaces;
 
-import com.control.gastos.entities.MasterBoxDiscount;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface IMasterBoxDiscountRepository extends IBaseRepository<MasterBoxDiscount, Integer>{
+import com.control.gastos.entities.MasterBoxDiscount;
+@Repository
+public interface IMasterBoxDiscountRepository extends JpaRepository<MasterBoxDiscount, Integer>,IBaseRepository<MasterBoxDiscount, Integer>{
 }

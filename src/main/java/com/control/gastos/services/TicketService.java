@@ -11,24 +11,14 @@ import org.springframework.util.Assert;
 
 import com.control.gastos.dtos.TicketDTO;
 import com.control.gastos.entities.Ticket;
-import com.control.gastos.jpa.repository.interfaces.IBaseRepository;
 import com.control.gastos.jpa.repository.interfaces.ITicketRepository;
 import com.control.gastos.services.interfaces.ITicketService;
 
 @Service("ticketService")
-public class TicketService extends BaseService<Ticket, TicketDTO, Integer> implements ITicketService{
+public class TicketService extends CRUDService<Ticket, TicketDTO, Integer> implements ITicketService{
 	
 	@Autowired
-	private ITicketRepository ticketRepository;
-	
-	/**
-	 * @param typeT
-	 * @param typeS
-	 * @param baseRepository
-	 */
-	public TicketService(Class<Ticket> typeT, Class<TicketDTO> typeS, IBaseRepository<Ticket, Integer> baseRepository) {
-		super(typeT, typeS, baseRepository);
-	}
+	private static ITicketRepository ticketRepository;
 	/**
 	 * 
 	 */

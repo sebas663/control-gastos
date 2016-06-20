@@ -1,6 +1,9 @@
 package com.control.gastos.jpa.repository.interfaces;
 
-import com.control.gastos.entities.MasterCompany;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface IMasterCompanyRepository extends IBaseRepository<MasterCompany, Integer>{
+import com.control.gastos.entities.MasterCompany;
+@Repository
+public interface IMasterCompanyRepository extends JpaRepository<MasterCompany, Integer>,IBaseRepository<MasterCompany, Integer>{
 }

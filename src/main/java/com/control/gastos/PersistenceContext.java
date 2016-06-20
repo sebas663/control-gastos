@@ -8,7 +8,6 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -17,7 +16,22 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.control.gastos.entities.MasterBoxDiscount;
+import com.control.gastos.entities.MasterCompany;
+import com.control.gastos.entities.MasterCreditCardDiscount;
+import com.control.gastos.entities.MasterProduct;
+import com.control.gastos.entities.Ticket;
 import com.control.gastos.jpa.repository.CustomRepositoryFactoryBean;
+import com.control.gastos.jpa.repository.MasterBoxDiscountRepository;
+import com.control.gastos.jpa.repository.MasterCompanyRepository;
+import com.control.gastos.jpa.repository.MasterCreditCardDiscountRepository;
+import com.control.gastos.jpa.repository.MasterProductRepository;
+import com.control.gastos.jpa.repository.TicketRepository;
+import com.control.gastos.jpa.repository.interfaces.IMasterBoxDiscountRepository;
+import com.control.gastos.jpa.repository.interfaces.IMasterCompanyRepository;
+import com.control.gastos.jpa.repository.interfaces.IMasterCreditCardDiscountRepository;
+import com.control.gastos.jpa.repository.interfaces.IMasterProductRepository;
+import com.control.gastos.jpa.repository.interfaces.ITicketRepository;
 
 
 
@@ -34,8 +48,7 @@ import com.control.gastos.jpa.repository.CustomRepositoryFactoryBean;
  * @author Petri Kainulainen
  */
 @Configuration
-//@EnableJpaAuditing(dateTimeProviderRef = "dateTimeProvider")
-@EnableJpaRepositories(basePackages = {"com.control.gastos.entities"},
+@EnableJpaRepositories(basePackages = {"com.control.gastos.jpa.repository"},
         repositoryFactoryBeanClass = CustomRepositoryFactoryBean.class
 )
 @EnableTransactionManagement
@@ -43,7 +56,6 @@ class PersistenceContext {
     private static final String[] ENTITY_PACKAGES = {
             "com.control.gastos.entities"
     };
-
     private static final String PROPERTY_NAME_DB_DRIVER_CLASS = "db.driver";
     private static final String PROPERTY_NAME_DB_PASSWORD = "db.password";
     private static final String PROPERTY_NAME_DB_URL = "db.url";
@@ -53,17 +65,6 @@ class PersistenceContext {
     private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
     private static final String PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY = "hibernate.ejb.naming_strategy";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-
-//    @Bean
-//    AuditorAware<String> auditorProvider() {
-//        return new UsernameAuditorAware();
-//    }
-
-//    @Bean
-//    DateTimeProvider dateTimeProvider(DateTimeService dateTimeService) {
-//        return new AuditingDateTimeProvider(dateTimeService);
-//    }
-
 
     /**
      * Creates and configures the datasource bean.
@@ -142,4 +143,25 @@ class PersistenceContext {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
+	@Bean
+    public ITicketRepository ticketRepository(EntityManagerFactory entityManagerFactory){
+       return new TicketRepository(Ticket.class,entityManagerFactory.createEntityManager());
+    }
+	@Bean
+    public IMasterProductRepository masterProductRepository(EntityManagerFactory entityManagerFactory){
+       return new MasterProductRepository(MasterProduct.class,entityManagerFactory.createEntityManager());
+    }
+	@Bean
+    public IMasterCreditCardDiscountRepository masterCreditCardDiscountRepository(EntityManagerFactory entityManagerFactory){
+       return new MasterCreditCardDiscountRepository(MasterCreditCardDiscount.class,entityManagerFactory.createEntityManager());
+    }
+	@Bean
+    public IMasterCompanyRepository masterCompanyRepository(EntityManagerFactory entityManagerFactory){
+       return new MasterCompanyRepository(MasterCompany.class,entityManagerFactory.createEntityManager());
+    }
+	@Bean
+    public IMasterBoxDiscountRepository masterBoxDiscountRepository(EntityManagerFactory entityManagerFactory){
+       return new MasterBoxDiscountRepository(MasterBoxDiscount.class,entityManagerFactory.createEntityManager());
+    }
+   
 }
