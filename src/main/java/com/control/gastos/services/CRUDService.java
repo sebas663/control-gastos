@@ -7,10 +7,10 @@ import java.util.List;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import com.control.gastos.jpa.repository.interfaces.IBaseRepository;
 import com.control.gastos.services.interfaces.ICRUDService;
 
 public abstract  class CRUDService<T, S, ID extends Serializable> implements ICRUDService<T, S, ID>{
@@ -18,7 +18,7 @@ public abstract  class CRUDService<T, S, ID extends Serializable> implements ICR
 	@Autowired
 	private Mapper dozerBeanMapper;
 	@Autowired
-	private JpaRepository<T, ID> baseRepository;
+	private IBaseRepository<T, ID> baseRepository;
 	private Class<T> entityClass;
 	private Class<S> dtoClass;
 	/**

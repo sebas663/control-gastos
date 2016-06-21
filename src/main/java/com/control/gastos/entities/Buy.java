@@ -12,7 +12,7 @@ public class Buy {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-	private Integer index;
+	private Integer position;
 	private Integer productID;
 	private String external_code;
 	private Double quantity;
@@ -37,16 +37,16 @@ public class Buy {
 		this.id = id;
 	}
 	/**
-	 * @return the index
+	 * @return the position
 	 */
-	public Integer getIndex() {
-		return index;
+	public Integer getPosition() {
+		return position;
 	}
 	/**
-	 * @param index the index to set
+	 * @param position the position to set
 	 */
-	public void setIndex(Integer index) {
-		this.index = index;
+	public void setPosition(Integer position) {
+		this.position = position;
 	}
 	/**
 	 * @return the productID

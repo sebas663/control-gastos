@@ -1,8 +1,12 @@
 package com.control.gastos.jpa.repository;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -15,7 +19,6 @@ extends SimpleJpaRepository<T, ID>  implements IBaseRepository<T, ID>{
 	
 	private  EntityManager entityManager;
 	private  JpaEntityInformation<T, ?> entityInformation;
-	
 
 	/**
 	 * Creates a new {@link SimpleJpaRepository} to manage objects of the given
@@ -41,6 +44,5 @@ extends SimpleJpaRepository<T, ID>  implements IBaseRepository<T, ID>{
 		this.entityInformation = entityInformation;
 		this.entityManager = entityManager;
 	}
-	
 } 
 

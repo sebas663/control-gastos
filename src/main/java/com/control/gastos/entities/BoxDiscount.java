@@ -12,7 +12,7 @@ public class BoxDiscount {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-	private Integer index;
+	private Integer position;
 	private Integer boxDiscountID;
 	private Double amount;
 	private Double percent;
@@ -35,16 +35,16 @@ public class BoxDiscount {
 		this.id = id;
 	}
 	/**
-	 * @return the index
+	 * @return the position
 	 */
-	public Integer getIndex() {
-		return index;
+	public Integer getPosition() {
+		return position;
 	}
 	/**
-	 * @param index the index to set
+	 * @param position the position to set
 	 */
-	public void setIndex(Integer index) {
-		this.index = index;
+	public void setPosition(Integer position) {
+		this.position = position;
 	}
 	/**
 	 * @return the boxDiscountID
