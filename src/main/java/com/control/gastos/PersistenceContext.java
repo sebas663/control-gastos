@@ -143,25 +143,25 @@ class PersistenceContext {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
-	@Bean
-    public ITicketRepository ticketRepository(EntityManagerFactory entityManagerFactory){
-       return new TicketRepository(Ticket.class,entityManagerFactory.createEntityManager());
-    }
-	@Bean
-    public IMasterProductRepository masterProductRepository(EntityManagerFactory entityManagerFactory){
-       return new MasterProductRepository(MasterProduct.class,entityManagerFactory.createEntityManager());
-    }
-	@Bean
-    public IMasterCreditCardDiscountRepository masterCreditCardDiscountRepository(EntityManagerFactory entityManagerFactory){
-       return new MasterCreditCardDiscountRepository(MasterCreditCardDiscount.class,entityManagerFactory.createEntityManager());
-    }
-	@Bean
-    public IMasterCompanyRepository masterCompanyRepository(EntityManagerFactory entityManagerFactory){
-       return new MasterCompanyRepository(MasterCompany.class,entityManagerFactory.createEntityManager());
-    }
-	@Bean
-    public IMasterBoxDiscountRepository masterBoxDiscountRepository(EntityManagerFactory entityManagerFactory){
-       return new MasterBoxDiscountRepository(MasterBoxDiscount.class,entityManagerFactory.createEntityManager());
-    }
+//	@Bean
+//    public ITicketRepository ticketRepository(EntityManagerFactory entityManagerFactory){
+//       return new TicketRepository(Ticket.class,entityManagerFactory.createEntityManager());
+//    }
+//	@Bean
+//    public IMasterProductRepository masterProductRepository(EntityManagerFactory entityManagerFactory){
+//       return new MasterProductRepository(MasterProduct.class,entityManagerFactory.createEntityManager());
+//    }
+//	@Bean
+//    public IMasterCreditCardDiscountRepository masterCreditCardDiscountRepository(EntityManagerFactory entityManagerFactory){
+//       return new MasterCreditCardDiscountRepository(MasterCreditCardDiscount.class,entityManagerFactory.createEntityManager());
+//    }
+//	@Bean
+//    public IMasterCompanyRepository masterCompanyRepository(EntityManagerFactory entityManagerFactory){
+//       return new MasterCompanyRepository(MasterCompany.class,entityManagerFactory.createEntityManager());
+//    }
+//	@Bean
+//    public IMasterBoxDiscountRepository masterBoxDiscountRepository(EntityManagerFactory entityManagerFactory){
+//       return new MasterBoxDiscountRepository(MasterBoxDiscount.class,entityManagerFactory.createEntityManager());
+//    }
    
 }
